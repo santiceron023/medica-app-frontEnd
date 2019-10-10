@@ -1,0 +1,47 @@
+<mat-card> Ingrese los Datos del paciente </mat-card>
+
+<form class="example-container" [formGroup]="form" #frmPaciete="ngForm" (ngSubmit)="operar()">
+
+    <div [hidden]="true">
+        <mat-form-field class="full-width-field">
+            <input matInput placeholder="ID" formControlName="idFormCtrl">
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="full-width-field">
+            <input matInput placeholder="Nombres" formControlName="nombresFormCtrl">
+    </mat-form-field>
+
+    <mat-form-field class="full-width-field">
+            <input matInput placeholder="Apellidos" formControlName="apellidosFormCtrl">
+    </mat-form-field>
+
+    <mat-form-field class="full-width-field">
+            <input matInput placeholder="Dni" formControlName="dniFormCtrl">
+    </mat-form-field>
+
+    <mat-form-field class="full-width-field">
+            <input matInput placeholder="Dirección" formControlName="direccionFormCtrl">
+    </mat-form-field>
+
+    <mat-form-field class="full-width-field">
+            <input matInput placeholder="Teléfono" formControlName="telefonoFormCtrl">
+    </mat-form-field>
+
+    
+    <mat-form-field class="full-width-field">
+            <input matInput placeholder="Email" formControlName="emailFormCtrl">
+    </mat-form-field>
+
+
+    <button class="full-width-field" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        <mat-icon>done</mat-icon>
+        <span>Aceptar</span>
+    </button>
+
+    <button  class="full-width-field"  mat-raised-button color="accent" type="buton" routerLink="/paciente">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+    </button>
+
+</form>
