@@ -6,8 +6,10 @@ import {
   MatSnackBarModule,
   MatSidenavModule,
   MatMenuModule,
-  MatDividerModule
+  MatDividerModule,
+  MatDialogModule
 } from '@angular/material'
+import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [],
@@ -29,6 +31,10 @@ import {
     , MatSidenavModule
     , MatMenuModule
     , MatDividerModule
+
+    ,MatDialogModule
+
+    // , CdkTableModule
   ],
   //para el padre module
   exports:[
@@ -46,6 +52,9 @@ import {
     , MatSidenavModule
     , MatMenuModule
     , MatDividerModule
+    , MatDialogModule
+
+    // , CdkTableModule
   ]
 })
 export class MaterialModule { }

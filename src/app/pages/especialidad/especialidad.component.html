@@ -1,1 +1,54 @@
-<p>especialidad works!</p>
+<mat-toolbar>
+    <span>Especialidad</span>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<div class="example-container mat-elevation-z8" *ngIf="route.children.length === 0">
+
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+
+    <!-- mat table flex -->
+
+    <mat-table [dataSource]="dataSource" matSort>
+        <!-- Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Id. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.idEspecialidad}} </mat-cell>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+        </ng-container>
+
+
+        <!-- Column -->
+        <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-button color="primary"
+                    [routerLink]="[ 'edicion', element.idEspecialidad ]">modificar</button>
+                <button mat-button color="warn" (click)="eliminar(element.idEspecialidad)">eliminar</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <!-- paginador -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>
+
+
+<!-- fab -->
+<button *ngIf="route.children.length === 0" mat-fab color="accent" style="float: right" routerLink="/especialidad/nuevo">
+    <mat-icon>add</mat-icon>
+</button>
