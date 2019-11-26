@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
 import {
-  MatTableModule, MatToolbarModule, MatIconModule, MatPaginatorModule, 
-  MatButtonModule, MatSortModule, MatFormFieldModule, MatInputModule, 
+  MatTableModule, MatToolbarModule, MatIconModule, MatPaginatorModule,
+  MatButtonModule, MatSortModule, MatFormFieldModule, MatInputModule,
   MatCardModule,
   MatSnackBarModule,
   MatSidenavModule,
   MatMenuModule,
   MatDividerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatExpansionModule,
+  MatAutocompleteModule
 } from '@angular/material'
 import { CdkTableModule } from '@angular/cdk/table';
+import { MAT_DATE_LOCALE } from '@angular/material/core'
 
 @NgModule({
   declarations: [],
-  imports: [    
+  imports: [
     MatTableModule,
     MatIconModule,
     MatToolbarModule,
@@ -32,12 +38,21 @@ import { CdkTableModule } from '@angular/cdk/table';
     , MatMenuModule
     , MatDividerModule
 
-    ,MatDialogModule
+    , MatDialogModule
+
+    , MatSelectModule
+
+    , MatDatepickerModule
+    , MatNativeDateModule
+    , MatExpansionModule
+
+    ,MatAutocompleteModule
+
 
     // , CdkTableModule
   ],
   //para el padre module
-  exports:[
+  exports: [
     MatTableModule,
     MatToolbarModule,
     MatIconModule,
@@ -53,8 +68,16 @@ import { CdkTableModule } from '@angular/cdk/table';
     , MatMenuModule
     , MatDividerModule
     , MatDialogModule
+    , MatSelectModule
+    , MatDatepickerModule
+    , MatNativeDateModule
+    , MatExpansionModule
+    ,MatAutocompleteModule
 
     // , CdkTableModule
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ]
 })
 export class MaterialModule { }

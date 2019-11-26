@@ -43,7 +43,7 @@ export class MedicoComponent implements OnInit {
     let debug = medico ? medico : new Medico();
     this.dialog.open(DialogoComponent, {
       width: '250px',
-      data: debug
+      data: <Medico>debug
     });
   }
 

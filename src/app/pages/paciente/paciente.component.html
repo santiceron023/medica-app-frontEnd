@@ -44,7 +44,8 @@
 </mat-table>
 
 <!-- paginador -->
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<mat-paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [length]= "cantidadRegTotal" (page)="cambioPaginador($event)"></mat-paginator>
+<!-- pageEvento.next($event) -->
 
 <!-- fab -->
 <button mat-fab color="accent" style="float: right" routerLink="/paciente/nuevo">
