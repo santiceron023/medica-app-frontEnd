@@ -1,0 +1,119 @@
+<mat-toolbar>
+    <span>Registro de consulta Especial</span>
+</mat-toolbar>
+
+<form [formGroup]="formGroup" class="example-container">
+
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Paciente" matInput formControlName="pacienteFormCtrl"
+            [matAutocomplete]="autoPac">
+        <mat-autocomplete #autoPac="matAutocomplete" [displayWith]="pipeSelected">
+            <mat-option *ngFor="let option of filteredPaciente | async" [value]="option">
+                {{option.nombres}} {{option.apellidos}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Especialidad" matInput formControlName="especialidadFormCtrl"
+            [matAutocomplete]="autoEsp">
+        <mat-autocomplete #autoEsp="matAutocomplete" [displayWith]="pipeSelected">
+            <mat-option *ngFor="let option of filteredEspecialidad | async" [value]="option">
+                {{option.nombre}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Medico" matInput formControlName="medicoFormCtrl" [matAutocomplete]="autoMed">
+        <mat-autocomplete #autoMed="matAutocomplete" [displayWith]="pipeSelected">
+            <mat-option *ngFor="let option of filteredMedico | async" [value]="option">
+                {{option.nombres}} {{option.apellidos}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Escoge Fecha" formControlName="fechaFormCtrl" [max]="hoy">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-card>
+
+        <mat-form-field>
+            <input matInput placeholder="Diagnostico" formControlName="diagnosticoFormCtrl">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Tratamiento" formControlName="tratamientoFormCtrl">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="button" (click)="agregarDetalle()">Agregar detalle</button>
+
+
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let item of detalleConsulta; let i=index">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{i+1}}. {{item.diagnostico}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Ver tratamiento
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-form-field>
+                    <input matInput placeholder="Detalle" [value]="item.tratamiento">
+                </mat-form-field>
+
+                <button type="button" mat-raised-button color="warn" (click)="removerDet(i)">Remover</button>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </mat-card>
+
+
+    <mat-card>
+        <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Exámen" matInput formControlName="examenFormCtrl"
+                [matAutocomplete]="autoExa">
+            <mat-autocomplete #autoExa="matAutocomplete" [displayWith]="pipeSelected">
+                <mat-option *ngFor="let option of filteredExamen | async" [value]="option">
+                    {{option.nombre}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <button mat-raised-button type="button" color="primary" (click)="agregarExamen()">Agregar Examen</button>
+
+
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let item of examenesConsulta; let i=index">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{i+1}}. {{item.nombre}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Ver descripción
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-form-field>
+                    <input matInput placeholder="Detalle" [value]="item.descripcion">
+                </mat-form-field>
+
+                <button mat-raised-button type="button" color="warn" (click)="removerExa(i)">Remover</button>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </mat-card>
+
+
+
+    <button mat-raised-button color="primary" (click)="guardar()">aceptar</button>
+
+
+</form>

@@ -1,0 +1,14 @@
+<mat-toolbar>
+    <span>Reporte Consultas</span>
+</mat-toolbar>
+
+<button mat-button color="primary" (click)="Cambiar('line')">Lineal</button>
+<button mat-button color="primary" (click)="Cambiar('bar')">Barras</button>
+<button mat-button color="primary" (click)="Cambiar('doughnut')">Rosquilla</button>
+<button mat-button color="primary" (click)="Cambiar('radar')">Radar</button>
+<button mat-button color="primary" (click)="Cambiar('pie')">Pie</button>
+
+
+<div *ngIf="chart">
+  <canvas id="canvas">{{ chart }}</canvas>
+</div>
