@@ -11,6 +11,7 @@ import { PacienteEdicionComponent } from './pages/paciente/paciente-edicion/paci
 import { PacienteComponent } from './pages/paciente/paciente.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   //predef
@@ -38,6 +39,8 @@ const routes: Routes = [
   { path: 'consulta-especial', component: EspecialComponent},
   { path: 'buscar', component: BuscarComponent},
   { path: 'reporte', component: ReporteComponent},
+  { path: 'login', component: LoginComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
 
 ];
 
