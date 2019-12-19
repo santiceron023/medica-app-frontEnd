@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginService } from './_service/login.service';
+import { MenuService } from './_service/menu.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'MediApp';
+  constructor(
+    private loginService: LoginService,
+    private menuService: MenuService
+  ) {}
+
+  ngOnInit(): void {
+    
+    this.menuService.menuCambio.subscribe(data => {  
+      console.log(`APP COMPO datos de subscripcion: ${JSON.stringify(data)}`);
+        
+      // this.menus = data;
+    });
+  }
 }

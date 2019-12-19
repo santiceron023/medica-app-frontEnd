@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { HOST } from "../_shared/var.constants";
-import { HttpClient } from "@angular/common/http";
-import { ConsultaListaExamen } from "../_model/consultaListaExamen";
-import { Consulta } from "../_model/consulta";
-import { ConsultaResumen } from "../_model/ConsultaResumen";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HOST } from '../_shared/var.constants';
+import { HttpClient } from '@angular/common/http';
+import { ConsultaListaExamen } from '../_model/consultaListaExamen';
+import { Consulta } from '../_model/consulta';
+import { ConsultaResumen } from '../_model/ConsultaResumen';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ConsultaService {
   url: string = `${HOST}/consultas`;
@@ -30,7 +30,7 @@ export class ConsultaService {
 
   generarReporte() {
     return this.http.get(`${this.url}/generarReporte`, {
-      responseType: "blob"
+      responseType: 'blob'
     });
   }
 

@@ -1,29 +1,29 @@
-import { DetalleDialogComponent } from "./detalle-dialog/detalle-dialog.component";
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import { DetalleDialogComponent } from './detalle-dialog/detalle-dialog.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import {
   MatTableDataSource,
   MatPaginator,
   MatSort,
   MatDialog
-} from "@angular/material";
-import { Consulta } from "src/app/_model/consulta";
-import { ConsultaService } from "src/app/_service/consulta.service";
-import { FiltroConsulta } from "src/app/_model/filtroConsulta";
+} from '@angular/material';
+import { Consulta } from 'src/app/_model/consulta';
+import { ConsultaService } from 'src/app/_service/consulta.service';
+import { FiltroConsulta } from 'src/app/_model/filtroConsulta';
 
 @Component({
-  selector: "app-buscar",
-  templateUrl: "./buscar.component.html",
-  styleUrls: ["./buscar.component.css"]
+  selector: 'app-buscar',
+  templateUrl: './buscar.component.html',
+  styleUrls: ['./buscar.component.css']
 })
 export class BuscarComponent implements OnInit {
   form: FormGroup;
   displayedColumns = [
-    "paciente",
-    "medico",
-    "especialidad",
-    "fecha",
-    "acciones"
+    'paciente',
+    'medico',
+    'especialidad',
+    'fecha',
+    'acciones'
   ];
   dataSource: MatTableDataSource<Consulta>;
   @ViewChild(MatPaginator, { static: false })
@@ -39,17 +39,17 @@ export class BuscarComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      dni: new FormControl(""),
-      nombreCompleto: new FormControl(""),
+      dni: new FormControl(''),
+      nombreCompleto: new FormControl(''),
       fechaConsulta: new FormControl()
     });
   }
 
   buscar() {
     let filtro = new FiltroConsulta(
-      this.form.value["dni"],
-      this.form.value["nombreCompleto"],
-      this.form.value["fechaConsulta"]
+      this.form.value['dni'],
+      this.form.value['nombreCompleto'],
+      this.form.value['fechaConsulta']
     );
     filtro.nombreCompleto = filtro.nombreCompleto.toLowerCase();
     //desde las 0 horas

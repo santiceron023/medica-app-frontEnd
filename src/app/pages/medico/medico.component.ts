@@ -43,7 +43,7 @@ export class MedicoComponent implements OnInit {
     let debug = medico ? medico : new Medico();
     this.dialog.open(DialogoComponent, {
       width: '250px',
-      data: <Medico>debug
+      data: debug
     });
   }
 
@@ -57,7 +57,7 @@ export class MedicoComponent implements OnInit {
     this.medicoService.eliminar(medico.idMedico).subscribe(data => {
       this.medicoService.listar().subscribe(medicos => {
         this.medicoService.medicoCambio.next(medicos);
-        this.medicoService.mensajeCambio.next("Se elimino");
+        this.medicoService.mensajeCambio.next('Se elimino');
       });
     });
   }

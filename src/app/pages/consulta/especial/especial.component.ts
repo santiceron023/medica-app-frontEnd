@@ -22,7 +22,7 @@ enum FilterOption {
   Paciente = 2,
   Especialidad = 3,
   Examen = 4
-};
+}
 
 @Component({
   selector: 'app-especial',
@@ -153,7 +153,7 @@ export class EspecialComponent implements OnInit {
     consultaListaExamen.examenList = this.examenesConsulta;
 
     this.conExamen.registrar(consultaListaExamen).subscribe(() => {
-      this.snackBar.open("Se registró", "Aviso", { duration: 2000 });
+      this.snackBar.open('Se registró', 'Aviso', { duration: 2000 });
 
       setTimeout(() => {
         this.limpiarControles();
@@ -179,7 +179,7 @@ export class EspecialComponent implements OnInit {
       this.formGroup.controls.diagnosticoFormCtrl.setValue(null);
       this.formGroup.controls.tratamientoFormCtrl.setValue(null);
     } else {
-      this.snackBar.open("Seleccione detalle", "Aviso", { duration: 2000 })
+      this.snackBar.open('Seleccione detalle', 'Aviso', { duration: 2000 })
     }
   }
   removerDet(i: number) {
@@ -189,7 +189,7 @@ export class EspecialComponent implements OnInit {
 
   
   agregarExamen() {
-    let newDet = new Examen();
+    let newDet;
     let value = <Examen>this.formGroup.value['examenFormCtrl'];
         if (value.idExamen > 0 ) {
 
@@ -204,7 +204,7 @@ export class EspecialComponent implements OnInit {
        this.formGroup.controls.examenFormCtrl.setValue('');
       }
     } else {
-      this.snackBar.open("Seleccione exámen", "Aviso", { duration: 2000 })
+      this.snackBar.open('Seleccione exámen', 'Aviso', { duration: 2000 })
     }
   }
   removerExa(i: number) {
@@ -216,8 +216,8 @@ export class EspecialComponent implements OnInit {
   private _filter(value: any, option: number): Array<any> {
 
     //cuando es seleccionado ya no es un string sino el objeto no se hace nada
-    if (typeof (value) == "string") {
-      const filterValue = (<string>value).toLowerCase();
+    if (typeof (value) == 'string') {
+      const filterValue = value.toLowerCase();
 
       switch (option) {
         case FilterOption.Especialidad:
@@ -251,11 +251,11 @@ export class EspecialComponent implements OnInit {
   pipeSelected(val: any) {
     if (!val) return
     // [Paciente | Medico | Especialidad] 
-    if (val["idEspecialidad"])
+    if (val['idEspecialidad'])
     //  ((val instanceof Especialidad))
     {
       return val ? `${(<Especialidad>val).nombre}` : val;
-    } else if(val["idExamen"]){
+    } else if(val['idExamen']){
       return val ? `${(<Examen>val).nombre}` : val;
     } else{
       return val ? `${val.nombres} ${val.apellidos}` : val;
@@ -263,7 +263,7 @@ export class EspecialComponent implements OnInit {
   }
 
   cleanValidator(control: FormControl): { [s: string]: boolean } {
-    if (typeof (control.value) == "string") return { cleanValidator: true };
+    if (typeof (control.value) == 'string') return { cleanValidator: true };
     //OK
     return null;
   }

@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { HOST } from "../_shared/var.constants";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { HOST } from '../_shared/var.constants';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ArchivoService {
   url: string = `${HOST}/archivo`;
@@ -13,13 +13,13 @@ export class ArchivoService {
 
   guardar(file: File) {
     let formdata = new FormData();
-    formdata.append("file", file);
+    formdata.append('file', file);
     //response así porque recibe un txt
     return this.http.post(this.url, formdata);
   }
 
   leer() {    
-    return this.http.get(`${this.url}`, { responseType: "blob" });
+    return this.http.get(`${this.url}`, { responseType: 'blob' });
   }
 
   // modificar(pac :Examen){

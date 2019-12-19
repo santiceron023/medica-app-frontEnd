@@ -55,76 +55,76 @@ export class PacienteService {
     burnData() {
         return `[
           {
-            "idPaciente": 1,
-            "direccion": "calle 34",
-            "dni": "23421",
-            "nombres": "jaime",
-            "apellidos": "garzon",
-            "telefono": "232354",
-            "email": "garzon@gmail.com"
+            'idPaciente': 1,
+            'direccion': 'calle 34',
+            'dni': '23421',
+            'nombres': 'jaime',
+            'apellidos': 'garzon',
+            'telefono': '232354',
+            'email': 'garzon@gmail.com'
           },
           {
-            "idPaciente": 3,
-            "direccion": "estadio atanasio",
-            "dni": "1234567",
-            "nombres": "Santiago",
-            "apellidos": "Cerón",
-            "telefono": "456543",
-            "email": "SFC@gmail.com"
+            'idPaciente': 3,
+            'direccion': 'estadio atanasio',
+            'dni': '1234567',
+            'nombres': 'Santiago',
+            'apellidos': 'Cerón',
+            'telefono': '456543',
+            'email': 'SFC@gmail.com'
           },
           {
-            "idPaciente": 2,
-            "direccion": "edif. atanasio apto 568",
-            "dni": "88909890",
-            "nombres": "katherine",
-            "apellidos": "Vela",
-            "telefono": "311645342",
-            "email": "katheInt@gmail.com"
+            'idPaciente': 2,
+            'direccion': 'edif. atanasio apto 568',
+            'dni': '88909890',
+            'nombres': 'katherine',
+            'apellidos': 'Vela',
+            'telefono': '311645342',
+            'email': 'katheInt@gmail.com'
           },
           {
-            "idPaciente": 5,
-            "direccion": "estadio atanasio",
-            "dni": "abc123",
-            "nombres": "Alicia",
-            "apellidos": "Rodriguez",
-            "telefono": "456543",
-            "email": "CaroR@gmail.com"
+            'idPaciente': 5,
+            'direccion': 'estadio atanasio',
+            'dni': 'abc123',
+            'nombres': 'Alicia',
+            'apellidos': 'Rodriguez',
+            'telefono': '456543',
+            'email': 'CaroR@gmail.com'
           },
           {
-            "idPaciente": 7,
-            "direccion": "calle 34#22-13",
-            "dni": "1892434",
-            "nombres": "juddy",
-            "apellidos": "Reyna Fuentes",
-            "telefono": "73124543",
-            "email": "judy@gmail.com"
+            'idPaciente': 7,
+            'direccion': 'calle 34#22-13',
+            'dni': '1892434',
+            'nombres': 'juddy',
+            'apellidos': 'Reyna Fuentes',
+            'telefono': '73124543',
+            'email': 'judy@gmail.com'
           },
           {
-            "idPaciente": 8,
-            "direccion": "paq robledo",
-            "dni": "4545122",
-            "nombres": "Dayana",
-            "apellidos": "Dante Bello",
-            "telefono": "909090990",
-            "email": "daya@hotmail.com"
+            'idPaciente': 8,
+            'direccion': 'paq robledo',
+            'dni': '4545122',
+            'nombres': 'Dayana',
+            'apellidos': 'Dante Bello',
+            'telefono': '909090990',
+            'email': 'daya@hotmail.com'
           },
           {
-            "idPaciente": 10,
-            "direccion": "envigado",
-            "dni": "345423",
-            "nombres": "camilo",
-            "apellidos": "henao",
-            "telefono": "456789",
-            "email": "chemano@gmail.com"
+            'idPaciente': 10,
+            'direccion': 'envigado',
+            'dni': '345423',
+            'nombres': 'camilo',
+            'apellidos': 'henao',
+            'telefono': '456789',
+            'email': 'chemano@gmail.com'
           },
           {
-            "idPaciente": 11,
-            "direccion": "bello",
-            "dni": "897843",
-            "nombres": "Daniela",
-            "apellidos": "orozco",
-            "telefono": "4567000",
-            "email": "dorozco@gmail.com"
+            'idPaciente': 11,
+            'direccion': 'bello',
+            'dni': '897843',
+            'nombres': 'Daniela',
+            'apellidos': 'orozco',
+            'telefono': '4567000',
+            'email': 'dorozco@gmail.com'
           }
         ]`;
       }

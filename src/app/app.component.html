@@ -2,100 +2,112 @@
 
 <div class="example-container">
 
-    <mat-toolbar color="primary" class="example-toolbar">
-        <button mat-icon-button (click)="sideNav.toggle()">
-            <mat-icon *ngIf=!sideNav.opened>menu</mat-icon>
-            <mat-icon *ngIf=sideNav.opened>close</mat-icon>
-        </button>
-        <h1 class="example-app-name">Medi App</h1>
+  <mat-toolbar color="primary" class="example-toolbar" *ngIf="loginService.estaLogeado()">
+      <button mat-icon-button (click)="sideNav.toggle()">
+          <mat-icon *ngIf=!sideNav.opened>menu</mat-icon>
+          <mat-icon *ngIf=sideNav.opened>close</mat-icon>
+      </button>
+      <h1 class="example-app-name">Medi App</h1>
 
 
-        <br>
+      <br>
 
 
-        <!-- 3 puntos -->
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_vert</mat-icon>
-        </button>
+      <!-- 3 puntos -->
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+      </button>
 
 
-        <!-- menu 3 puntos -->
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/perfil">
-                <mat-icon>account_box</mat-icon>
-                <span>Mi Perfil</span>
+      <!-- menu 3 puntos -->
+      <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/perfil">
+              <mat-icon>account_box</mat-icon>
+              <span>Mi Perfil</span>
+          </button>
+          <button mat-menu-item (click)="sideNav.opened = false" (click)="loginService.cerrarSesion()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Cerrar Sesión</span>
+          </button>
+      </mat-menu>
+
+  </mat-toolbar>
+
+
+  <!-- lateral -->
+  <!-- los alias sn re importantes para hacer todo -->
+  <mat-sidenav-container class="example-sidenav-container">
+
+      <mat-sidenav #sideNav style="width: 200px">
+          <img src="assets/logoHeart.png" width="128" style="margin-left: 20px">
+
+
+    <div *ngFor="let menu of menus">
+      <button mat-menu-item (click)="sideNav.toggle()" routerLink="{{menu.url}}" style="cursor: pointer" >
+        <mat-icon>{{menu.icono}}</mat-icon>
+        <span>{{menu.nombre}}</span>
+      </button>
+
+    </div>
+
+
+        <!-- MENU QUEMADO!!!! -->
+
+          <!-- <button mat-menu-item (click)="sideNav.toggle()" routerLink="/buscar" style="cursor: pointer">
+              <mat-icon>search</mat-icon>
+              <span>Buscar</span>
+          </button>
+
+          <mat-divider></mat-divider>
+
+          <button mat-menu-item (click)="sideNav.toggle()" routerLink="/consulta" style="cursor: pointer">
+              <mat-icon>insert_drive_file</mat-icon>
+              <span>Registrar</span>
             </button>
-            <button mat-menu-item (click)="sideNav.opened = false">
-                <mat-icon>exit_to_app</mat-icon>
-                <span>Cerrar Sesión</span>
-            </button>
-        </mat-menu>
-
-    </mat-toolbar>
-
-
-    <!-- lateral -->
-    <!-- los alias sn re importantes para hacer todo -->
-    <mat-sidenav-container class="example-sidenav-container">
-
-        <mat-sidenav #sideNav style="width: 200px">
-            <img src="assets/logoHeart.png" width="128" style="margin-left: 20px">
-
-            <button mat-menu-item (click)="sideNav.toggle()" routerLink="/buscar" style="cursor: pointer">
-                <mat-icon>search</mat-icon>
-                <span>Buscar</span>
-            </button>
-
+      
             <mat-divider></mat-divider>
+      
+            <button mat-menu-item (click)="sideNav.toggle()" routerLink="/consulta-especial" style="cursor: pointer">
+              <mat-icon>insert_drive_file</mat-icon>
+              <span>Registrar E.</span>
+            </button>
+      
+            <mat-divider></mat-divider>
+      
+            <button mat-menu-item (click)="sideNav.toggle()" routerLink="/especialidad" style="cursor: pointer">
+              <mat-icon>star_rate</mat-icon>
+              <span>Especialidades</span>
+            </button>
+      
+            <mat-divider></mat-divider>
+            
+            <button mat-menu-item (click)="sideNav.toggle()" routerLink="/medico" style="cursor: pointer">
+              <mat-icon>healing</mat-icon>
+              <span>Médicos</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="sideNav.toggle()" routerLink="/examen" style="cursor: pointer">
+              <mat-icon>assignment</mat-icon>
+              <span>Examenes</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="sideNav.toggle()" routerLink="/paciente" style="cursor: pointer">
+              <mat-icon>accessibility</mat-icon>
+              <span>Pacientes</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="sideNav.toggle()" routerLink="/reporte" style="cursor: pointer">
+              <mat-icon>assessment</mat-icon>
+              <span>Reportes</span>
+            </button> -->
 
-            <button mat-menu-item (click)="sideNav.toggle()" routerLink="/consulta" style="cursor: pointer">
-                <mat-icon>insert_drive_file</mat-icon>
-                <span>Registrar</span>
-              </button>
-        
-              <mat-divider></mat-divider>
-        
-              <button mat-menu-item (click)="sideNav.toggle()" routerLink="/consulta-especial" style="cursor: pointer">
-                <mat-icon>insert_drive_file</mat-icon>
-                <span>Registrar E.</span>
-              </button>
-        
-              <mat-divider></mat-divider>
-        
-              <button mat-menu-item (click)="sideNav.toggle()" routerLink="/especialidad" style="cursor: pointer">
-                <mat-icon>star_rate</mat-icon>
-                <span>Especialidades</span>
-              </button>
-        
-              <mat-divider></mat-divider>
-              
-              <button mat-menu-item (click)="sideNav.toggle()" routerLink="/medico" style="cursor: pointer">
-                <mat-icon>healing</mat-icon>
-                <span>Médicos</span>
-              </button>
-              <mat-divider></mat-divider>
-              <button mat-menu-item (click)="sideNav.toggle()" routerLink="/examen" style="cursor: pointer">
-                <mat-icon>assignment</mat-icon>
-                <span>Examenes</span>
-              </button>
-              <mat-divider></mat-divider>
-              <button mat-menu-item (click)="sideNav.toggle()" routerLink="/paciente" style="cursor: pointer">
-                <mat-icon>accessibility</mat-icon>
-                <span>Pacientes</span>
-              </button>
-              <mat-divider></mat-divider>
-              <button mat-menu-item (click)="sideNav.toggle()" routerLink="/reporte" style="cursor: pointer">
-                <mat-icon>assessment</mat-icon>
-                <span>Reportes</span>
-              </button>
+      </mat-sidenav>
 
-        </mat-sidenav>
+      <mat-sidenav-content>
+          <router-outlet></router-outlet>
+      </mat-sidenav-content>
 
-        <mat-sidenav-content>
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-
-    </mat-sidenav-container>
+  </mat-sidenav-container>
 
 
 </div>

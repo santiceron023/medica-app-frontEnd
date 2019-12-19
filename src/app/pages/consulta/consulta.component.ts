@@ -85,7 +85,7 @@ export class ConsultaComponent implements OnInit {
       this.diagnostico = null;
       this.tratamiento = null;
     } else {
-      this.snackBar.open("Seleccione detalle", "Aviso", { duration: 2000 })
+      this.snackBar.open('Seleccione detalle', 'Aviso', { duration: 2000 })
     }
   }
 
@@ -109,7 +109,7 @@ export class ConsultaComponent implements OnInit {
         this.idExamenSeleccionado = null;
       }
     } else {
-      this.snackBar.open("Seleccione exámen", "Aviso", { duration: 2000 })
+      this.snackBar.open('Seleccione exámen', 'Aviso', { duration: 2000 })
     }
   }
 
@@ -144,7 +144,7 @@ export class ConsultaComponent implements OnInit {
     consultaListaExamen.examenList = this.examenesConsulta;
 
     this.conExamen.registrar(consultaListaExamen).subscribe(() => {
-      this.snackBar.open("Se registró", "Aviso", { duration: 2000 });
+      this.snackBar.open('Se registró', 'Aviso', { duration: 2000 });
 
       setTimeout(() => {
         this.limpiarControles();

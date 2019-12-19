@@ -59,7 +59,7 @@ export class EspecialiadEdicionComponent implements OnInit {
       this.especialidadService.modificar(this.especialidad).subscribe(data => {
         this.especialidadService.listar().subscribe(especialidad => {
           this.especialidadService.especialidadCambio.next(especialidad);
-          this.especialidadService.mensajeCambio.next("Se modificó");
+          this.especialidadService.mensajeCambio.next('Se modificó');
         });
       });
     } else {
@@ -67,7 +67,7 @@ export class EspecialiadEdicionComponent implements OnInit {
         console.log(data);
         this.especialidadService.listar().subscribe(especialidad => {
           this.especialidadService.especialidadCambio.next(especialidad);
-          this.especialidadService.mensajeCambio.next("Se registró");
+          this.especialidadService.mensajeCambio.next('Se registró');
         });
       });
     }

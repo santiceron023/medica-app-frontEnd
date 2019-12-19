@@ -1,25 +1,25 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { ConsultaService } from "src/app/_service/consulta.service";
-import { ConsultaResumen } from "src/app/_model/ConsultaResumen";
-import { Chart } from "chart.js";
-import { ArchivoService } from "src/app/_service/archivo.service";
-import { DomSanitizer } from "@angular/platform-browser";
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ConsultaService } from 'src/app/_service/consulta.service';
+import { ConsultaResumen } from 'src/app/_model/ConsultaResumen';
+import { Chart } from 'chart.js';
+import { ArchivoService } from 'src/app/_service/archivo.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export enum graphType {
-  line = "line",
-  bar = "bar",
-  doughnut = "doughtnut",
-  radar = "radar",
-  pie = "pie"
+  line = 'line',
+  bar = 'bar',
+  doughnut = 'doughtnut',
+  radar = 'radar',
+  pie = 'pie'
 }
 
 @Component({
-  selector: "app-reporte",
-  templateUrl: "./reporte.component.html",
-  styleUrls: ["./reporte.component.css"]
+  selector: 'app-reporte',
+  templateUrl: './reporte.component.html',
+  styleUrls: ['./reporte.component.css']
 })
 export class ReporteComponent implements OnInit {
-  @ViewChild("idGraph", { static: true }) graphRef: ElementRef;
+  @ViewChild('idGraph', { static: true }) graphRef: ElementRef;
 
   tipoGraf: string;
   chart: Chart;
@@ -65,17 +65,17 @@ export class ReporteComponent implements OnInit {
             labels: fecha,
             datasets: [
               {
-                label: "Cantidad",
+                label: 'Cantidad',
                 data: cantidad,
-                borderColor: "#3cba9f",
+                borderColor: '#3cba9f',
                 fill: false,
                 backgroundColor: [
-                  "rgba(255, 99, 132, 0.2)",
-                  "rgba(54, 162, 235, 0.2)",
-                  "rgba(255, 206, 86, 0.2)",
-                  "rgba(75, 192, 192, 0.2)",
-                  "rgba(153, 102, 0, 0.2)",
-                  "rgba(255, 159, 64, 0.2)"
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 0, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
                 ]
               }
             ]
@@ -111,7 +111,7 @@ export class ReporteComponent implements OnInit {
 
   generarReporte() {
     // export class AppComponent {
-    //   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
+    //   pdfSrc = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
     // }
 
     this.servicioConsulta.generarReporte().subscribe(data => {
@@ -128,10 +128,10 @@ export class ReporteComponent implements OnInit {
     this.servicioConsulta.generarReporte().subscribe(data => {
       // <a href dwnload descargar lo que esta en href
       const url = window.URL.createObjectURL(data);
-      const a = document.createElement("a");
-      a.setAttribute("style", "display:none");
+      const a = document.createElement('a');
+      a.setAttribute('style', 'display:none');
       a.href = url;
-      a.download = "archivo.pdf";
+      a.download = 'archivo.pdf';
       a.click();
     });
   }

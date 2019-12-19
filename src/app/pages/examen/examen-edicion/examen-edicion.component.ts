@@ -74,7 +74,7 @@ export class ExamenEdicionComponent implements OnInit {
         });
     }
 
-    this.router.navigateByUrl("/examen");
+    this.router.navigateByUrl('/examen');
 
   }
 }

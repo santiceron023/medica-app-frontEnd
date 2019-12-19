@@ -6,41 +6,41 @@ export class ConsultaListaExamen{
 }
 
 // {
-//     "consulta": {
-//       "detalleConsulta": [
+//     'consulta': {
+//       'detalleConsulta': [
 //         {
-//           "diagnostico": "string",
-//           "idDetalle": 0,
-//           "tratamiento": "string"
+//           'diagnostico': 'string',
+//           'idDetalle': 0,
+//           'tratamiento': 'string'
 //         }
 //       ],
-//       "especialidad": {
-//         "idEspecialidad": 0,
-//         "nombre": "string"
+//       'especialidad': {
+//         'idEspecialidad': 0,
+//         'nombre': 'string'
 //       },
-//       "fecha": "2019-10-16T17:47:01.089Z",
-//       "idConsulta": 0,
-//       "medico": {
-//         "apellidos": "string",
-//         "cmp": "string",
-//         "idMedico": 0,
-//         "nombres": "string"
+//       'fecha': '2019-10-16T17:47:01.089Z',
+//       'idConsulta': 0,
+//       'medico': {
+//         'apellidos': 'string',
+//         'cmp': 'string',
+//         'idMedico': 0,
+//         'nombres': 'string'
 //       },
-//       "paciente": {
-//         "apellidos": "string",
-//         "direccion": "string",
-//         "dni": "string",
-//         "email": "string",
-//         "idPaciente": 0,
-//         "nombres": "string",
-//         "telefono": "string"
+//       'paciente': {
+//         'apellidos': 'string',
+//         'direccion': 'string',
+//         'dni': 'string',
+//         'email': 'string',
+//         'idPaciente': 0,
+//         'nombres': 'string',
+//         'telefono': 'string'
 //       }
 //     },
-//     "examenList": [
+//     'examenList': [
 //       {
-//         "descripcion": "string",
-//         "idExamen": 0,
-//         "nombre": "string"
+//         'descripcion': 'string',
+//         'idExamen': 0,
+//         'nombre': 'string'
 //       }
 //     ]
 //   }
