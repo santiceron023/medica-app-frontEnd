@@ -21,6 +21,21 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { DetalleDialogComponent } from './pages/buscar/detalle-dialog/detalle-dialog.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
 import { LoginComponent } from './login/login.component';
+import { TOKEN_NAME } from './_shared/var.constants';
+import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+import { GuardService } from './_service/guard.service';
+import { Not401Component } from './pages/not401/not401.component';
+import { RecuperarComponent } from './login/recuperar/recuperar.component';
+import { TokenComponent } from './login/recuperar/token/token.component';
+
+export function tokenGetterFn() {
+  const helper = new JwtHelperService();
+
+  ///ToDo: REVISAR SI ES VÁLIDO EL TOKEN!!!!!!!!
+  let token = sessionStorage.getItem(TOKEN_NAME);
+  token = helper.isTokenExpired(token) ? null : token;
+  return token != null ? token : '';
+}
 
 @NgModule({
   declarations: [
@@ -38,7 +53,10 @@ import { LoginComponent } from './login/login.component';
     BuscarComponent,
     DetalleDialogComponent,
     ReporteComponent,
-    LoginComponent
+    LoginComponent,
+    Not401Component,
+    RecuperarComponent,
+    TokenComponent
   ],
 
   entryComponents: [DialogoComponent, DetalleDialogComponent],
@@ -51,9 +69,17 @@ import { LoginComponent } from './login/login.component';
     MaterialModule,
     //formularios
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetterFn,
+        whitelistedDomains: ['localhost:4565']
+      }
+    })
   ],
   // providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [GuardService]
 })
 export class AppModule {}
