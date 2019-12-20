@@ -22,7 +22,7 @@ export class EspecialidadComponent implements OnInit {
   paginator: MatPaginator;
 
   constructor(private espService: EspecialidadService
-              , private route:ActivatedRoute
+              , public route:ActivatedRoute
               , private snack:MatSnackBar) {
   }
 

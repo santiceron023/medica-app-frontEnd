@@ -13,7 +13,7 @@ export class AppComponent {
   menus:Menu[] = [];
   
   constructor(
-    private loginService: LoginService,
+    public loginService: LoginService,
     private menuService: MenuService
   ) {}
 

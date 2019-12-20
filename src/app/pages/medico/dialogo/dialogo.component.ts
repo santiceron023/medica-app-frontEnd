@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./dialogo.component.css']
 })
 export class DialogoComponent {
-  private medico:Medico;
+  public medico:Medico;
 
   constructor(private dialogRef: MatDialogRef<DialogoComponent>
     , @Inject(MAT_DIALOG_DATA) private data: Medico
