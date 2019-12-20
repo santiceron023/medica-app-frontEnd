@@ -20,7 +20,9 @@ export class LoginService {
     const body = `grant_type=password&username=${encodeURIComponent(usuario)}&password=${encodeURIComponent(contrasena)}`;
 
     return this.http.post<tokenApi>(this.urltoken, body, {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').set('Authorization', 'Basic ' + btoa(API_CLIENT_ID + ':' + API_CLIENT_SECRET))
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+      .set('Authorization', 'Basic ' + btoa(API_CLIENT_ID + ':' + API_CLIENT_SECRET))
     });
   }
 
