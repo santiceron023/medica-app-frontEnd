@@ -12,10 +12,13 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatExpansionModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatProgressBarModule,
+  MatPaginatorIntl
 } from '@angular/material'
 import { CdkTableModule } from '@angular/cdk/table';
 import { MAT_DATE_LOCALE } from '@angular/material/core'
+import { MatPaginatorImpl } from '../_shared/mat-paginator';
 
 @NgModule({
   declarations: [],
@@ -48,6 +51,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core'
 
     ,MatAutocompleteModule
 
+    ,MatProgressBarModule
+
 
     // , CdkTableModule
   ],
@@ -73,11 +78,13 @@ import { MAT_DATE_LOCALE } from '@angular/material/core'
     , MatNativeDateModule
     , MatExpansionModule
     ,MatAutocompleteModule
+    , MatProgressBarModule
 
     // , CdkTableModule
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    { provide: MatPaginatorIntl, useClass: MatPaginatorImpl}
   ]
 })
 export class MaterialModule { }

@@ -1,5 +1,5 @@
 import { MaterialModule } from './material/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -27,6 +27,10 @@ import { GuardService } from './_service/guard.service';
 import { Not401Component } from './pages/not401/not401.component';
 import { RecuperarComponent } from './login/recuperar/recuperar.component';
 import { TokenComponent } from './login/recuperar/token/token.component';
+import { ServerErrorsInterceptor } from './_shared/serverErrorsInterceptor';
+import { MatPaginatorIntl } from '@angular/material/paginator/typings/paginator-intl';
+import { MatPaginatorImpl } from './_shared/mat-paginator';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 export function tokenGetterFn() {
   const helper = new JwtHelperService();
@@ -74,12 +78,24 @@ export function tokenGetterFn() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetterFn,
-        whitelistedDomains: ['localhost:4565']
+        // a quien sí token
+        whitelistedDomains: ['localhost:4565'],
+        // blacklistedRoutes
       }
     })
   ],
   // providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent],
-  providers: [GuardService]
+  providers: [GuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrorsInterceptor,
+      multi: true
+    },
+    //para la navegación en producción
+    {
+      provide: LocationStrategy, useClass: HashLocationStrategy
+    }
+  ]
 })
-export class AppModule {}
+export class AppModule { }
