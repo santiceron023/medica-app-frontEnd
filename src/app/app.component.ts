@@ -17,15 +17,7 @@ export class AppComponent {
     private menuService: MenuService
   ) {}
 
-  ngOnInit(): void {
-    console.log("ON INIT APP");
-    
-    
-    this.menuService.menuCambio.subscribe(data => {  
-      console.log(`APP COMPO datos de subscripcion: ${JSON.stringify(data)}`);
-        
-    });
-    
+  ngOnInit(): void {   
     this.menuService.menuValorReactivo.subscribe(
       data => {
         console.log(`VALOR MENU NUMERO NEW -> ${data}`);

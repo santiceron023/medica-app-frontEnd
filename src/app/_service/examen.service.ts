@@ -9,32 +9,32 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ExamenService {
 
-  url:string = `${HOST}/examenes`;
+  url = `${HOST}/examenes`;
 
   examenCambio = new Subject<Examen[]>();
   mensajeCambio = new Subject<string>();
 
-  //inyeccion de dep
-  constructor(private http: HttpClient){
+
+  constructor(private http: HttpClient) {
   }
 
-  listar(){
+  listar() {
       return this.http.get<Examen[]>(this.url);
   }
 
-  modificar(pac :Examen){ 
-      return this.http.put(this.url,pac);
+  modificar(pac: Examen) {
+      return this.http.put(this.url, pac);
   }
 
-  registrar(pac :Examen){
-      return this.http.post(this.url,pac);
+  registrar(pac: Examen) {
+      return this.http.post(this.url, pac);
   }
 
-  eliminar(id :number){
+  eliminar(id: number) {
       return this.http.delete(`${this.url}/${id}`);
   }
 
-  listarId(id:number){
+  listarId(id: number) {
       return this.http.get<Examen>(`${this.url}/${id}`);
   }
 }

@@ -25,23 +25,23 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+  }
 
   ngAfterViewInit() {
     (window as any).initialize();
   }
 
   iniciarSesion() {
+    sessionStorage.clear
     this.login.login(this.usuario, this.clave).subscribe((data: tokenApi) => {
-      console.log(`login INTENTADO con data -> ${JSON.stringify(data)}`);
+      console.log(`login OK con data -> ${JSON.stringify(data)}`);
 
       if (data) {
 
         // let token = (JSON.parse(data)).access_token;
         let token = data.access_token;
         sessionStorage.setItem(TOKEN_NAME, token);
-
-        this.menuService.menuCambio.next('*********login EJECUTADO ********');
 
         //descifrar
         const helper = new JwtHelperService();
@@ -50,12 +50,8 @@ export class LoginComponent implements OnInit {
         this.menuService
           .listarPorUsuario(tokenDecoded.user_name)
           .subscribe((data: Menu[]) => {
-            console.log(`llegó el menu ${JSON.stringify(data)}`);
-            // debugger;
-
-            this.menuService.menuCambio.next('se cargó data serv');
-
-            this.router.navigateByUrl('paciente');
+            this.menuService.menuValorReactivo.next(data);
+            this.router.navigateByUrl('/paciente');
           });
       }
     });

@@ -77,7 +77,8 @@ export function tokenGetterFn() {
       config: {
         tokenGetter: tokenGetterFn,
         // a quien sí token
-        whitelistedDomains: ['52.67.254.91'],
+        whitelistedDomains: ['localhost:4565'],
+        // whitelistedDomains: ['52.67.254.91'],
         // blacklistedRoutes
       }
     })

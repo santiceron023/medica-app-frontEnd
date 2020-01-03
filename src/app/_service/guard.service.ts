@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 export class GuardService implements CanActivate {
   constructor(private loginService: LoginService,
     private menuService: MenuService,
-     private router: Router) {}
+    private router: Router) { }
 
   canActivate(
     route: import('@angular/router').ActivatedRouteSnapshot,
@@ -25,40 +25,48 @@ export class GuardService implements CanActivate {
 
     const helper = new JwtHelperService();
 
-    let log = this.loginService.estaLogeado();
-    let token = sessionStorage.getItem(TOKEN_NAME);
+    const log = this.loginService.estaLogeado();
+    const token = sessionStorage.getItem(TOKEN_NAME);
     if (log) {
       if (helper.isTokenExpired(token)) {
         this.irInicio();
       }
-      //roles de usuario
+      // roles de usuario
       const tokenDecoded = helper.decodeToken(token);
-      //1 url
-      let url = state.url;
+      // 1 url
+      const url = state.url;
 
-      //2 menu del user
-      //si se usa SSUBSCRIBE error de sync
-      return this.menuService.listarPorUsuario(tokenDecoded.user_name).pipe(
-         map(
-          data => {
-          // debugger;
-          this.menuService.menuCambio.next('carga del menu desde guard');
-          this.menuService.menuValorReactivo.next(data);
-          
-          //3 comparar
-          let auxPermiso = data.find(item=> item.url == url);
-          if(!auxPermiso){
-            console.log("usuario sin permioso");
-            
-            this.irInicio();
-          }else{
-            return true;
-          }        
-        })
+      // 2 menu del user
+      // si se usa SSUBSCRIBE error de sync
+      // return this.menuService.listarPorUsuario(tokenDecoded.user_name).pipe(
+      //   map(
+      //     data => {
+      //       this.menuService.menuValorReactivo.next(data);
+
+      //        // 3 comparar
+      //       const auxPermiso = data.find(item => item.url === url);
+      //       if (!auxPermiso) {
+      //         console.log("usuario sin permiso");
+      //         this.irInicio();
+      //       } else {
+      //         return true;
+      //       }
+      //     })
+      // );
+
+      //  3 comparar
+      const auxPermiso = this.menuService.menuValorReactivo.value.find(
+        item => item.url === url
       );
-      
-    
+      //Si no está, no tiene permiso
+      if (!auxPermiso) {
+        console.log("usuario sin permiso");
+        this.irInicio();
       } else {
+        return true;
+      }
+
+    } else {
       this.irInicio();
     }
   }

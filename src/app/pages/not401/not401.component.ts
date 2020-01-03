@@ -27,7 +27,7 @@ export class Not401Component implements OnInit {
   }
 
   pacientes(){
-    this.router.navigateByUrl("/paciente");
+    this.router.navigateByUrl('/login');
 
   }
 

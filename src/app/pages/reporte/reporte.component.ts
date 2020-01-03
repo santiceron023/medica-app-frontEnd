@@ -57,7 +57,6 @@ export class ReporteComponent implements OnInit {
         let ctx = this.graphRef.nativeElement;
         let cantidad = data.map(res => res.cantidad);
         let fecha = data.map(res => res.fecha);
-        // console.log(cantidad, fecha);
 
         this.chart = new Chart(ctx, {
           type: this.tipoGraf,

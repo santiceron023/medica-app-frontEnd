@@ -33,7 +33,6 @@ export class ServerErrorsInterceptor implements HttpInterceptor {
                     this.snackBar.open(err.mensaje, 'ERROR 400', { duration: 5000 });
                 }
                 else if (err.status === 401) {
-                    console.log(err.message);
                     this.snackBar.open(err.message, 'ERROR 401', { duration: 5000 });
                     //this.router.navigate(['/login']);
                 }

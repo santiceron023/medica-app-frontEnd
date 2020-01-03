@@ -18,11 +18,7 @@ export class ArchivoService {
     return this.http.post(this.url, formdata);
   }
 
-  leer() {    
+  leer() {
     return this.http.get(`${this.url}`, { responseType: 'blob' });
   }
-
-  // modificar(pac :Examen){
-  //     return this.http.put(this.url,pac);
-  // }
 }

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ConsultaService {
-  url: string = `${HOST}/consultas`;
+  url = `${HOST}/consultas`;
 
   constructor(private http: HttpClient) {}
 
@@ -19,11 +19,11 @@ export class ConsultaService {
   }
 
   buscar(filtroConsulta: any) {
-    //dberia ser un get, peor es post porque tiene mcuhos arg
+    // deria ser un get, peor es post porque tiene mcuhos arg
     return this.http.post<Consulta[]>(`${this.url}/buscar`, filtroConsulta);
   }
 
-  //es un procedimeinto almacenado
+  // procedimeinto almacenado
   listarResumen(): Observable<ConsultaResumen[]> {
     return this.http.get<ConsultaResumen[]>(`${this.url}/listarResumen`);
   }
@@ -34,18 +34,4 @@ export class ConsultaService {
     });
   }
 
-  // guardarArchivo(data : File){
-  //   let formdata: FormData = new FormData();
-  //   formdata.append('file', data);
-
-  //   return this.http.post(`${this.url}/guardarArchivo`, formdata, {
-  //     responseType: 'text'
-  //   });
-  // }
-
-  // leerArchivo(){
-  //   return this.http.get(`${this.url}/leerArchivo/1`, {
-  //     responseType: 'blob'
-  //   });
-  // }
 }

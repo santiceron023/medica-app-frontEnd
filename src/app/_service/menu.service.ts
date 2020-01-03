@@ -9,16 +9,12 @@ import { Menu } from '../_model/menu';
 })
 export class MenuService {
   url: string = `${HOST}/menus`;
-
-  menuCambio = new BehaviorSubject<string>('primervalor');
-
   menuValorReactivo = new BehaviorSubject<Menu[]>(new Array<Menu>());
 
   //inyeccion de dep
   constructor(private http: HttpClient) {}
 
   listar() {
-    this.menuCambio.next('consultó servicio');
     let token = sessionStorage.getItem(TOKEN_NAME);
     return this.http.get<Menu[]>(`${this.url}`, {
       headers: new HttpHeaders()

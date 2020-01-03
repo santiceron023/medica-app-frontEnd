@@ -3,14 +3,14 @@ import { Medico } from './medico';
 import { Especialidad } from './especialidad';
 import { DetalleConsulta } from './detalleConsulta';
 
-export class Consulta{
-    detalleConsulta : DetalleConsulta[];
-    especialidad : Especialidad;
-    // fecha : '2019-10-16T17:47:01.089Z'
+export class Consulta {
+    detalleConsulta: DetalleConsulta[];
+    especialidad: Especialidad;
+    // fecha: '2019-10-16T17:47:01.089Z'
     fecha: string;
     idConsulta: number;
-    medico : Medico;
-    paciente : Paciente;
+    medico: Medico;
+    paciente: Paciente;
 }
 
 // {
