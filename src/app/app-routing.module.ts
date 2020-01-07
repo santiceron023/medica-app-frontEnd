@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GuardService } from './core/guard/guard.service';
 import { Not401Component } from './core/not401/not401.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 const routes: Routes = [
@@ -33,8 +34,9 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
 
-  { path: 'medico',
-   loadChildren: () => import('./feature/medico/medico.module').then(m => m.MedicoModule),
+  {
+    path: 'medico',
+    loadChildren: () => import('./feature/medico/medico.module').then(m => m.MedicoModule),
     canActivate: [GuardService]
   },
 
@@ -76,6 +78,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  // para la navegación en producción
+  providers: [
+    {
+      provide: LocationStrategy, useClass: HashLocationStrategy
+    }]
 })
 export class AppRoutingModule { }

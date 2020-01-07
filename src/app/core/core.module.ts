@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServerErrorsInterceptor } from './interceptor/serverErrorsInterceptor';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { TOKEN_NAME } from '../shared/var.constants';
+import { MatButtonModule } from '@angular/material';
 
 
 export function tokenGetterFn() {
@@ -20,13 +21,14 @@ export function tokenGetterFn() {
     declarations: [Not401Component],
     imports:
         [
+            MatButtonModule,
             CommonModule,
             JwtModule.forRoot({
                 config: {
                     tokenGetter: tokenGetterFn,
                     // a quien sí token
-                    // whitelistedDomains: ['localhost:4565'],
-                    whitelistedDomains: ['52.67.254.91'],
+                    whitelistedDomains: ['localhost:4565'],
+                    // whitelistedDomains: ['52.67.254.91'],
                     // blacklistedRoutes
                 }
             })
@@ -39,11 +41,6 @@ export function tokenGetterFn() {
             useClass: ServerErrorsInterceptor,
             multi: true
         },
-
-        // para la navegación en producción
-        {
-            provide: LocationStrategy, useClass: HashLocationStrategy
-        }
     ],
 })
 export class CoreModule { }
