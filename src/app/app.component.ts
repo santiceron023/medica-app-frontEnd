@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { LoginService } from './_service/login.service';
-import { MenuService } from './_service/menu.service';
-import { Menu } from './_model/menu';
+import { LoginService } from './feature/login/service/login.service';
+import { Menu } from './core/menu/shared/menu';
+import { MenuService } from './core/menu/service/menu.service';
 
 @Component({
   selector: 'app-root',
@@ -10,20 +10,20 @@ import { Menu } from './_model/menu';
 })
 export class AppComponent {
 
-  menus:Menu[] = [];
-  
+  menus: Menu[] = [];
+
   constructor(
     public loginService: LoginService,
     private menuService: MenuService
   ) {}
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
     this.menuService.menuValorReactivo.subscribe(
       data => {
         console.log(`VALOR MENU NUMERO NEW -> ${data}`);
         this.menus = data;
       }
-    )
+    );
     
   }
 }
