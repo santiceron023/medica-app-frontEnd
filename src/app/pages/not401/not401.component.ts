@@ -11,24 +11,31 @@ import { Router } from '@angular/router';
 export class Not401Component implements OnInit {
 
   usuario: string;
+  loggeado = false;
+  linkIrANombre: string;
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     const helper = new JwtHelperService();
-
-    let token = sessionStorage.getItem(TOKEN_NAME);
-    if(token){
-    const decodedToken = helper.decodeToken(token);
-    this.usuario = decodedToken.user_name;
-    }else{
-      this.usuario="usuario"
+    const token = sessionStorage.getItem(TOKEN_NAME);
+    this.loggeado = token != null;
+    if (this.loggeado) {
+      const decodedToken = helper.decodeToken(token);
+      this.usuario = decodedToken.user_name;
+      this.linkIrANombre = 'pacientes';
+    } else {
+      this.usuario = 'usuario';
+      this.linkIrANombre = 'login';
     }
   }
 
-  pacientes(){
-    this.router.navigateByUrl('/login');
-
+  pacientes() {
+    if (this.loggeado) {
+      this.router.navigateByUrl('/paciente');
+    } else {
+      this.router.navigateByUrl('/login');
+    }
   }
 
 }
