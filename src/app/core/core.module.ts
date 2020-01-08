@@ -7,6 +7,7 @@ import { ServerErrorsInterceptor } from './interceptor/serverErrorsInterceptor';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { TOKEN_NAME } from '../shared/var.constants';
 import { MatButtonModule } from '@angular/material';
+import { SharedModule } from '../shared/shared.module';
 
 
 export function tokenGetterFn() {
@@ -22,7 +23,7 @@ export function tokenGetterFn() {
     imports:
         [
             MatButtonModule,
-            CommonModule,
+            SharedModule,
             JwtModule.forRoot({
                 config: {
                     tokenGetter: tokenGetterFn,
