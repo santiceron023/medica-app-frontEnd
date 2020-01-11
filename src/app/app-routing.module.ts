@@ -68,6 +68,20 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
 
+  {
+    path: 'perfil',
+    loadChildren: () =>
+      import('./feature/perfil/perfil.module').then(mod => mod.PerfilModule),
+    // canActivate: [GuardService]
+  },
+
+  {
+    path: 'signosvitales',
+    loadChildren: () =>
+      import('./feature/signosvitales/singosvitales.module').then(mod => mod.SignosVitalesModule),
+    // canActivate: [GuardService]
+  },
+
   // recuperar/gfdhfhjgjytj
   {
     path: 'recuperar',

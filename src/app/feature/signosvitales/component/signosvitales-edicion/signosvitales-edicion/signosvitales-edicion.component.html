@@ -1,0 +1,44 @@
+<mat-card> Ingrese los Datos de Signos Vitales </mat-card>
+
+<form class="example-container" [formGroup]="form">
+
+    <mat-form-field class="full-width-field">
+        <input type="text" placeholder="Nombre Paciente" matInput formControlName="pacienteFormCtrl"
+            [matAutocomplete]="autoPac">
+        <mat-autocomplete #autoPac="matAutocomplete" [displayWith]="pipeSelected">
+            <mat-option *ngFor="let option of filteredPaciente | async" [value]="option">
+                {{option.nombres}} {{option.apellidos}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-field">
+        <input matInput [matDatepicker]="picker" [max]="maxFecha" placeholder="Escoge una fecha"
+            formControlName="fechaFormCtrl">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-field">
+            <input matInput placeholder="Temperatura" formControlName="temperaturaFormCtrl">
+    </mat-form-field>
+
+    <mat-form-field class="full-width-field">
+            <input matInput placeholder="Pulso" formControlName="pulsoFormCtrl">
+    </mat-form-field>
+
+    <mat-form-field class="full-width-field">
+            <input matInput placeholder="Ritmo" formControlName="ritmoFormCtrl">
+    </mat-form-field>
+
+    <button class="full-width-field" mat-raised-button color="primary" (click)="guardar()" [disabled]="form.invalid">
+        <mat-icon>done</mat-icon>
+        <span>Aceptar</span>
+    </button>
+
+    <button  class="full-width-field"  mat-raised-button color="accent" type="buton" (click)="cancelar()">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+    </button>
+
+</form>

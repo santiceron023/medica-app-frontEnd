@@ -1,14 +1,11 @@
 import { Not401Component } from './not401/not401.component';
 import { NgModule } from '@angular/core';
-import { CommonModule, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { GuardService } from './guard/guard.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ServerErrorsInterceptor } from './interceptor/serverErrorsInterceptor';
+import { HttpErrorsInterceptor } from './interceptor/httpErrorsInterceptor';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { TOKEN_NAME } from '../shared/var.constants';
-import { MatButtonModule } from '@angular/material';
-import { SharedModule } from '../shared/shared.module';
-
+import { MatButtonModule, MatSnackBarModule } from '@angular/material';
 
 export function tokenGetterFn() {
     const helper = new JwtHelperService();
@@ -22,8 +19,10 @@ export function tokenGetterFn() {
     declarations: [Not401Component],
     imports:
         [
+            // material
             MatButtonModule,
-            SharedModule,
+            MatSnackBarModule,
+
             JwtModule.forRoot({
                 config: {
                     tokenGetter: tokenGetterFn,
@@ -39,7 +38,7 @@ export function tokenGetterFn() {
         GuardService,
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: ServerErrorsInterceptor,
+            useClass: HttpErrorsInterceptor,
             multi: true
         },
     ],

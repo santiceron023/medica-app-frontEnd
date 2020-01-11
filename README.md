@@ -1,28 +1,31 @@
-# MediApp
+# Medica App
+### Front End App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
+Administración consultas médicas, con manejo de roles, genera estadísticas y maneja multimedia.
 
-## Development server
+## Características
+* ***Arquitectura feature-core-shared***
+* ***Lazy loading***
+* Manejo de Fechas
+* Erroes centralizados
+* Responsive
+* Side menú
+* Maneja JWT, decode
+* Animación en Login
+* Angular material en español, Manejo de tablas, paginación
 
-Run `ng serve --aot=true` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## build
 
-## Code scaffolding
+necesita correrse con ahead of time, activado, angular Issue. Pre-configurado en ng serve.
+ 
+## Tecnologías
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+***Base de datos:*** PostgreSQL v12 --- H2
 
-## Build
+***Dependencias:*** [Npm] (https://nodejs.org/es/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+***Frameworks:*** Angular v8.1.3 --- Angular material
 
-## Running unit tests
+## Authors
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-0
+*   **Santiago Felipe Cerón Araujo** - [LinkedIn](https://www.linkedin.com/in/santiago-ceron-araujo)

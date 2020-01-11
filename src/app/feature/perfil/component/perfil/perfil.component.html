@@ -1,0 +1,16 @@
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Nombre de usuario</mat-card-title>
+        <mat-card-subtitle>{{nombreUsuario}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <hr>
+        <br>
+        <mat-card-subtitle>Roles</mat-card-subtitle>
+        <ul>
+            <li *ngFor="let rol of roles"> {{rol}} </li>
+        </ul>
+    
+    </mat-card-content>
+</mat-card>

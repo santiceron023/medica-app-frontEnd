@@ -9,7 +9,7 @@ import {
 } from '@angular/material';
 import { Consulta } from 'src/app/feature/consulta/shared/consulta';
 import { ConsultaService } from 'src/app/feature/consulta/service/consulta.service';
-import { FiltroConsulta } from 'src/app/feature/buscar/shared/filtroConsulta';
+import { FiltroConsultar } from 'src/app/feature/buscar/shared/filtroConsulta';
 
 @Component({
   selector: 'app-buscar',
@@ -35,7 +35,7 @@ export class BuscarComponent implements OnInit {
   constructor(
     private consultaService: ConsultaService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -46,7 +46,7 @@ export class BuscarComponent implements OnInit {
   }
 
   buscar() {
-    let filtro = new FiltroConsulta(
+    let filtro = new FiltroConsultar(
       this.form.value['dni'],
       this.form.value['nombreCompleto'],
       this.form.value['fechaConsulta']
@@ -65,8 +65,8 @@ export class BuscarComponent implements OnInit {
       this.consultaService.buscar(filtro).subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
       });
-    } 
-    
+    }
+
     else {
       //limpiar los elementos que no son los de búsqueda
       delete filtro.fechaConsulta;

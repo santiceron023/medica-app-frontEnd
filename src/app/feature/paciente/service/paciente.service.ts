@@ -27,10 +27,10 @@ export class PacienteService {
 
         // Initialize Params Object
         let params = new HttpParams();
-
         // Begin assigning parameters
         params = params.append('page', page.toString());
         params = params.append('size', size.toString());
+        
         return this.http.get<Pageable<Paciente>>
             (`${this.host}/pacientes/pageable`,{params: params});
     }

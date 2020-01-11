@@ -1,4 +1,4 @@
-export class FiltroConsulta{
+export class FiltroConsultar {
     dni:string;
     nombreCompleto:string;
     fechaConsulta: Date;

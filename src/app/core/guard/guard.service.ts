@@ -3,7 +3,7 @@ import { CanActivate, Router } from '@angular/router';
 import { LoginService } from '../../feature/login/service/login.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TOKEN_NAME } from '../../shared/var.constants';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 import { MenuService } from '../menu/service/menu.service';
 
 @Injectable({

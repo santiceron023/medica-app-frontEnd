@@ -23,7 +23,8 @@ export class PacienteComponent implements OnInit {
   // @ViewChild(MatPaginator, { static: false })
   // paginator: MatPaginator;
 
-  constructor(private pacService: PacienteService,
+  constructor(
+    private pacService: PacienteService,
     private snack: MatSnackBar) {
   }
 
@@ -62,7 +63,7 @@ export class PacienteComponent implements OnInit {
     this.pacService.listarPageable(pageNumber, pageSize).subscribe((data: Pageable<Paciente>) => {
       this.dataSource = new MatTableDataSource(data.content);
       this.dataSource.sort = this.sort;
-      this.cantidadRegTotal = data.totalElements
+      this.cantidadRegTotal = data.totalElements;
       // ya no se usa, desorganiza el sobreescribirlo
       // this.dataSource.paginator = this.paginator;
     }
@@ -71,7 +72,6 @@ export class PacienteComponent implements OnInit {
 
   cambioPaginador(page: PageEvent) {
     this.listar(page.pageIndex, page.pageSize);
-
   }
 
   eliminar(id) {

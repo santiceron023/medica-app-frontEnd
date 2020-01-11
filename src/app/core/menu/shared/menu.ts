@@ -1,4 +1,4 @@
-import { Rol } from '../../../feature/usuario/shared/Rol';
+import { Rol } from '../../../shared/model/Rol';
 
 export class Menu {
   idMenu: number;
