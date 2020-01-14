@@ -14,7 +14,7 @@ export class GuardService implements CanActivate {
     private loginService: LoginService,
     private menuService: MenuService,
     private router: Router
-    ) { }
+  ) { }
 
   canActivate(
     route: import('@angular/router').ActivatedRouteSnapshot,
@@ -30,16 +30,16 @@ export class GuardService implements CanActivate {
     const log = this.loginService.estaLogeado();
     const token = sessionStorage.getItem(TOKEN_NAME);
     if (log) {
+
       if (helper.isTokenExpired(token)) {
         this.irInicio();
       }
-      // roles de usuario
-      // const tokenDecoded = helper.decodeToken(token);
+
       // 1 url
       const url = state.url;
 
       // 2 menu del user
-      // si se usa SSUBSCRIBE error de sync
+
       // return this.menuService.listarPorUsuario(tokenDecoded.user_name).pipe(
       //   map(
       //     data => {
@@ -57,6 +57,10 @@ export class GuardService implements CanActivate {
       // );
 
       //  3 comparar
+
+      if (url === "/perfil") {
+        return true;
+      }
       const auxPermiso = this.menuService.menuValorReactivo.value.find(
         item => item.url === url
       );

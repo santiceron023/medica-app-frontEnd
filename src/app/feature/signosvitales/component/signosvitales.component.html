@@ -1,3 +1,7 @@
+<mat-toolbar>
+    <span>Signos Vitales</span>
+</mat-toolbar>
+
 <router-outlet *ngIf="true"></router-outlet>
 
 <form [formGroup]="form" (ngSubmit)="buscar()">
@@ -20,7 +24,7 @@
 
 </form>
 
-<mat-table #table [dataSource]="dataSource">
+<mat-table #table [dataSource]="dataSource" class="mat-elevation-z20">
 
     <ng-container *ngFor="let column of columns,let i = index" [matColumnDef]="column.columnDef">
 
@@ -38,7 +42,7 @@
     <ng-container matColumnDef="acciones">
         <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <button mat-button color="primary" [disabled]="!puedeClick" (click)="modificar(element)">modificar</button>
+            <button mat-button color="primary" [disabled]="!puedeClick" (click)="crearModificar(element)">modificar</button>
             <button mat-button color="warn" [disabled]="!puedeClick" (click)="eliminar(element.id)">eliminar</button>
         </mat-cell>
     </ng-container>
@@ -47,3 +51,9 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
+
+<br>
+
+<button mat-fab color="accent" [disabled]="!puedeClick" (click)="crearModificar()" style="float: right; margin-right: 20px">
+    <mat-icon>add</mat-icon>
+</button>

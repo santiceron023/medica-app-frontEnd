@@ -29,4 +29,12 @@ export class SignosvitalesService {
     return this.http.post(this.url, signo);
   }
 
+  actualizar(signo: SignosVitales) {
+    return this.http.put(this.url, signo);
+  }
+
+  eliminar(idSgino: number) {
+    return this.http.delete(`${this.url}/${idSgino}`);
+  }
+
 }

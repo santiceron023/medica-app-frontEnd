@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { Consulta } from 'src/app/feature/consulta/shared/consulta';
 import { ConsultaListaExamen } from 'src/app/feature/consulta/shared/consultaListaExamen';
+import { markFormGroupTouched } from 'src/app/shared/utils';
 
 enum FilterOption {
   Medico = 1,
@@ -50,13 +51,14 @@ export class ConsultaEspecialComponent implements OnInit {
   examenesConsulta: Examen[] = [];
 
 
-  constructor(private pacService: PacienteService
-    ,         private medService: MedicoService
-    ,         private snackBar: MatSnackBar
-    ,         private formBuilder: FormBuilder
-    ,         private exaService: ExamenService
-    ,         private conExamen: ConsultaService
-    ,         private espService: EspecialidadService) {
+  constructor(
+      private pacService: PacienteService
+    , private medService: MedicoService
+    , private snackBar: MatSnackBar
+    , private formBuilder: FormBuilder
+    , private exaService: ExamenService
+    , private conExamen: ConsultaService
+    , private espService: EspecialidadService) {
 
   }
 
@@ -135,6 +137,12 @@ export class ConsultaEspecialComponent implements OnInit {
   }
 
   guardar() {
+
+    if (!this.formGroup.valid) {
+      markFormGroupTouched(this.formGroup);
+      return;
+    }
+
     const medico = this.formGroup.value.medicoFormCtrl;
     const especialidad = this.formGroup.value.especialidadFormCtrl;
     const paciente = this.formGroup.value.pacienteFormCtrl;

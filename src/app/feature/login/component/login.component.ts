@@ -17,8 +17,8 @@ import { Menu } from 'src/app/core/menu/shared/menu.js';
 export class LoginComponent implements OnInit {
   usuario: string;
   clave: string;
-  mensaje: string = '';
-  error: string = '';
+  mensaje  = '';
+  error = '';
 
   constructor(
     private menuService: MenuService,

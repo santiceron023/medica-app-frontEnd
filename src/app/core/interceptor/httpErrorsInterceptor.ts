@@ -4,6 +4,8 @@ import { Observable, EMPTY } from 'rxjs';
 import { retry, tap, catchError } from 'rxjs/operators';
 import { REINTENTOS } from '../../shared/var.constants';
 import { Injectable } from '@angular/core';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -11,7 +13,9 @@ import { Injectable } from '@angular/core';
 })
 export class HttpErrorsInterceptor implements HttpInterceptor {
 
-    constructor(private snackBar: MatSnackBar) {
+    constructor(
+        private router: Router,
+        private snackBar: MatSnackBar) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -38,8 +42,12 @@ export class HttpErrorsInterceptor implements HttpInterceptor {
 
                 } else if (err.status === 401) {
 
-                    this.snackBar.open(err.message, 'ERROR 401', { duration: 5000 });
-                    // this.router.navigate(['/login']);
+                    this.snackBar.open(err.error.message, 'ERROR 401', { duration: 5000 });
+
+                } else if (err.status === 403) {
+
+                    this.snackBar.open(err.error.message, 'ERROR 403', { duration: 5000 });
+                    this.router.navigate(['/not-401']);
 
                 } else if (err.status === 500) {
                     this.snackBar.open(err.error.mensaje, 'ERROR 500', { duration: 5000 });

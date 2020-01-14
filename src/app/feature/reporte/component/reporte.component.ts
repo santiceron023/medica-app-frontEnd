@@ -2,10 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ConsultaService } from 'src/app/feature/consulta/service/consulta.service';
 import { ConsultaResumen } from 'src/app/feature/reporte/shared/ConsultaResumen';
 import { Chart } from 'chart.js';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ArchivoService } from '../service/archivo.service';
 
-export enum graphType {
+export enum GRAPH_TYPES {
   line = 'line',
   bar = 'bar',
   doughnut = 'doughtnut',
@@ -24,30 +22,16 @@ export class ReporteComponent implements OnInit {
   tipoGraf: string;
   chart: Chart;
   pdfSrc;
-  //javascript native
-  slectedFiles: FileList;
-  labelFile:string;
-
-  currentFileUpload: File;
-
-  imagenEstado = false;
-  imagenData: any;
+  pdfMessage: string;
 
   constructor(
-    private servicioConsulta: ConsultaService,
-    private sanitizador: DomSanitizer,
-    private servicioArchivo: ArchivoService
-  ) {}
+    private servicioConsulta: ConsultaService
+  ) { }
 
   ngOnInit() {
-    this.tipoGraf = graphType.line;
+    this.tipoGraf = GRAPH_TYPES.line;
     this.dibujar();
-
-    this.servicioArchivo.leer().subscribe(data => {
-      console.log(data);
-      // this.imagenData=data;
-      this.convertir(data);
-    });
+    this.pdfMessage = 'ver PDF';
   }
 
   dibujar() {
@@ -100,7 +84,7 @@ export class ReporteComponent implements OnInit {
       });
   }
 
-  Cambiar(graphType: string) {
+  cambiarTipoGraf(graphType: string) {
     this.tipoGraf = graphType;
     if (this.chart) {
       this.chart.destroy();
@@ -109,12 +93,10 @@ export class ReporteComponent implements OnInit {
   }
 
   generarReporte() {
-    // export class AppComponent {
     //   pdfSrc = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
-    // }
-
+    // se lee y luego se setea el recultado a pdf source, es el equivalente a pasarle la url
     this.servicioConsulta.generarReporte().subscribe(data => {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = (event: any) => {
         console.log(event.target.result);
         this.pdfSrc = event.target.result;
@@ -124,47 +106,16 @@ export class ReporteComponent implements OnInit {
   }
 
   desacargarReporte() {
+    // se usa forma descarga nativa JavaScript
+    // <a href dwnload descargar lo que esta en href
     this.servicioConsulta.generarReporte().subscribe(data => {
-      // <a href dwnload descargar lo que esta en href
       const url = window.URL.createObjectURL(data);
+
       const a = document.createElement('a');
       a.setAttribute('style', 'display:none');
       a.href = url;
       a.download = 'archivo.pdf';
       a.click();
     });
-  }
-
-  selectFile(event: any) {
-    console.log(event.target.files);
-    this.labelFile = event.target.files[0].name;
-    this.slectedFiles = event.target.files;
-  }
-
-  uploadFiles() {
-    this.currentFileUpload = this.slectedFiles.item(0);
-    this.servicioArchivo.guardar(this.currentFileUpload).subscribe(data => {
-      console.log(data);
-      this.slectedFiles = undefined;
-      this.labelFile = undefined;
-    });
-  }
-
-  mostrarImg() {
-    this.imagenEstado = !this.imagenEstado;
-  }
-
-  convertir(data: any) {
-    let reader = new FileReader();
-    reader.readAsDataURL(data);
-    reader.onload = () => {
-      //falta sanitizador !!! error de peligro!!!!!!!!
-      let datos = reader.result;
-      this.setearSanitizar(datos);
-    };
-  }
-
-  setearSanitizar(x: any) {
-    this.imagenData = this.sanitizador.bypassSecurityTrustResourceUrl(x);
   }
 }

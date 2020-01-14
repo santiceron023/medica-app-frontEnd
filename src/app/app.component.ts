@@ -15,7 +15,7 @@ export class AppComponent {
   constructor(
     public loginService: LoginService,
     private menuService: MenuService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.menuService.menuValorReactivo.subscribe(
@@ -24,6 +24,5 @@ export class AppComponent {
         this.menus = data;
       }
     );
-    
   }
 }

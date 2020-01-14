@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SignosvitalesService } from '../service/signosvitales.service';
-import { FormGroup, FormControl } from '@angular/forms';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { SignosVitales } from '../shared/signosvitales';
-import { FiltroConsultar } from '../../buscar/shared/filtroConsulta';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatPaginator, MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { FiltroConsultar } from '../../buscar/shared/filtroConsulta';
+import { SignosvitalesService } from '../service/signosvitales.service';
+import { SignosVitales } from '../shared/signosvitales';
 
 @Component({
   selector: 'app-signosvitales',
@@ -24,7 +24,7 @@ export class SignosvitalesComponent implements OnInit {
     { columnDef: 'fecha', header: 'Fecha', cell: (element: SignosVitales) => `${element.fecha}` },
     { columnDef: 'temperatura', header: 'Temperatura', cell: (element: SignosVitales) => `${element.temperatura}` },
     { columnDef: 'pulso', header: 'Pulso', cell: (element: SignosVitales) => `${element.pulso}` },
-    { columnDef: 'ritmoRespiratorio', header: 'Ritmo Respiratorio', cell: (element: SignosVitales) => `${element.ritmoRespiratorio}` }
+    { columnDef: 'ritmoRespiratorio', header: 'Ritmo Resp', cell: (element: SignosVitales) => `${element.ritmoRespiratorio}` }
   ];
   displayedColumns = this.columns.map(c => c.columnDef).concat(['acciones']);
   dataSource: MatTableDataSource<SignosVitales>;
@@ -32,6 +32,7 @@ export class SignosvitalesComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private snack: MatSnackBar,
     private signosService: SignosvitalesService
   ) { }
 
@@ -64,6 +65,16 @@ export class SignosvitalesComponent implements OnInit {
     );
   }
 
+  eliminar(id: number) {
+    this.signosService.eliminar(id).subscribe(
+      (data) => {
+        this.signosService.cambioRealizado.next(true);
+        const mensaje = 'Eliminado con éxito';
+        this.snack.open(mensaje, 'mensaje', { duration: 2000 });
+      }
+    );
+  }
+
   buscar() {
     const filtro = new FiltroConsultar(
       this.form.value.dni,
@@ -79,9 +90,11 @@ export class SignosvitalesComponent implements OnInit {
 
   }
 
-  modificar(element: SignosVitales) {
+  crearModificar(element?: SignosVitales) {
     // [routerLink]="[ 'edicion', element.id ]"
-    this.signosService.signoEditar = element;
+    if (element) {
+      this.signosService.signoEditar = element;
+    }
     this.puedeClick = false;
     this.router.navigateByUrl('/signosvitales/edicion');
   }

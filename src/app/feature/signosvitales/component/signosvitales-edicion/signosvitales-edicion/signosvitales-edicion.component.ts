@@ -67,24 +67,31 @@ export class SignosvitalesEdicionComponent implements OnInit {
   }
 
   guardar() {
+    const date = new Date();
     const id = this.signosService.signoEditar ? this.signosService.signoEditar.id : null;
     const signo = new SignosVitales(
       id,
-      this.form.value.pacienteFormCtrl.id,
-      moment(this.form.value.fechaFormCtrl).toISOString(),
-      this.form.value.temperaturaFormCtrl.value,
+      this.form.value.pacienteFormCtrl,
+      moment(this.form.value.fechaFormCtrl).set({
+        hour: date.getHours(),
+        minutes: date.getMinutes()
+      }).
+        toISOString(),
+      this.form.value.temperaturaFormCtrl,
       this.form.value.pulsoFormCtrl,
-      this.form.value.ritmoFormCtrl.value
+      this.form.value.ritmoFormCtrl
     );
     this.signosService.guardar(signo).subscribe(
       () => {
         this.signosService.cambioRealizado.next(true);
-        this.snack.open('guardadp', 'messga', { duration: 2000 });
+        const mensaje = (signo.id) ? 'Actualizado con éxito' : 'Creado con éxito';
+        this.snack.open(mensaje, 'mensaje', { duration: 2000 });
+        this.router.navigateByUrl('/signosvitales');
       }
     );
   }
 
-  cancelar(){
+  cancelar() {
     this.signosService.cambioRealizado.next(true);
     this.router.navigateByUrl('/signosvitales');
   }

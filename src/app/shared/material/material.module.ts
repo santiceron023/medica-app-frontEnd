@@ -24,9 +24,8 @@ import {
   MatListModule
 } from '@angular/material'
 // import { CdkTableModule } from '@angular/cdk/table';
-import { MAT_DATE_LOCALE } from '@angular/material/core'
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatPaginatorImpl } from './mat-paginator';
-import { CdkTableModule } from '@angular/cdk/table';
 
 @NgModule({
   declarations: [],
@@ -58,9 +57,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatAutocompleteModule,
 
     MatProgressBarModule,
-    CdkTableModule,
 
-    // MatListModule
+    MatListModule
   ],
 
   // para el padre module
@@ -86,9 +84,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatExpansionModule,
     MatAutocompleteModule,
     MatProgressBarModule,
-    // MatListModule,
-
-    CdkTableModule
+    MatListModule
   ],
   providers: [
     {

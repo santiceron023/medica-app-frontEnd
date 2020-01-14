@@ -3,13 +3,13 @@
 </mat-toolbar>
 
 <div>
-  <button mat-button color="primary" (click)="Cambiar('line')">Lineal</button>
-  <button mat-button color="primary" (click)="Cambiar('bar')">Barras</button>
-  <button mat-button color="primary" (click)="Cambiar('doughnut')">
+  <button mat-button color="primary" (click)="cambiarTipoGraf('line')">Lineal</button>
+  <button mat-button color="primary" (click)="cambiarTipoGraf('bar')">Barras</button>
+  <button mat-button color="primary" (click)="cambiarTipoGraf('doughnut')">
     Rosquilla
   </button>
-  <button mat-button color="primary" (click)="Cambiar('radar')">Radar</button>
-  <button mat-button color="primary" (click)="Cambiar('pie')">Pie</button>
+  <button mat-button color="primary" (click)="cambiarTipoGraf('radar')">Radar</button>
+  <button mat-button color="primary" (click)="cambiarTipoGraf('pie')">Pie</button>
 </div>
 
 <!-- graph -->
@@ -18,9 +18,12 @@
 </div>
 <!-- graph -->
 
+<hr>
+<br>
+
 <!-- pdf -->
 <div>
-  <button mat-raised-button color="accent" (click)="generarReporte()">ver PDF</button>
+  <button mat-raised-button color="accent" (click)="generarReporte()">{{pdfMessage}}</button>
   <button mat-raised-button (click)="desacargarReporte()">descargar</button>
 </div>
 
@@ -29,21 +32,3 @@
   [render-text]="true"
   style="display: block;">
 </pdf-viewer>
-
-<!-- pdf -->
-<div>
-  <button
-    mat-stroked-button
-    onclick="document.getElementById('fileToUpload').click()"
-    color="primary">
-    seleccionar archivo
-  </button>
-  <p>{{labelFile}}</p>
-  <input id="fileToUpload" multiple type="file" hidden (change)="selectFile($event)"/>
-  <button mat-raised-button (click)="uploadFiles()">upload</button>
-</div>
-
-
-<!-- img -->
-<button mat-raised-button (click)="mostrarImg()">mostar Img</button>
-<img mat-card-image [src]="imagenData" alt="imágen" *ngIf="imagenEstado">

@@ -1,3 +1,7 @@
+<mat-toolbar>
+    <span>Mi perfil</span>
+    <mat-icon>account_box</mat-icon>
+</mat-toolbar>
 
 <mat-card>
     <mat-card-header>
@@ -5,12 +9,11 @@
         <mat-card-subtitle>{{nombreUsuario}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <hr>
-        <br>
-        <mat-card-subtitle>Roles</mat-card-subtitle>
-        <ul>
-            <li *ngFor="let rol of roles"> {{rol}} </li>
-        </ul>
-    
+
+        <p class="mat-h2">Roles</p>
+        <mat-list dense *ngFor="let rol of roles">
+            <mat-list-item> {{rol}} </mat-list-item>
+        </mat-list>
+
     </mat-card-content>
 </mat-card>

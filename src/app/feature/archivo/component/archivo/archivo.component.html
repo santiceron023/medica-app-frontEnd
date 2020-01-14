@@ -1,0 +1,45 @@
+<mat-toolbar>
+  Subida de Archivos(modulo Adicional).
+</mat-toolbar>
+<p class="color-toolbar mat-h4"> Soporta Lectura de Img, Maneja sanitizador.
+  Soporte de PDF en reportes</p>
+<br>
+
+
+<h2 class="mat-h2"> Lista Archivos</h2>
+<mat-nav-list>
+  <mat-list-item *ngFor="let archivo of archivos">
+    {{archivo | mostrarInfoArchivo}}
+  </mat-list-item>
+</mat-nav-list>
+<br>
+
+
+<h2 class="mat-h2"> Carga Archivos</h2>
+<div class="carga-archivos-container">
+  <div class="grid-2-item">
+    <button mat-stroked-button onclick="document.getElementById('fileToUpload').click()" color="primary">
+      seleccionar
+    </button>
+    <p class="centered">{{labelFile}}</p>
+  </div>
+  <!-- input de tipo normal -->
+  <input id="fileToUpload" multiple type="file" hidden (change)="selectFile($event)" />
+
+  <button mat-raised-button (click)="uploadFiles()">upload</button>
+</div>
+<br>
+
+
+<h2 class="mat-h2"> Ver Imagen</h2>
+<div>
+  <mat-form-field>
+  <!-- [ngClass]="{
+    'green': idImg,
+    'red': !idImg
+  }"> -->
+    <input  matInput placeholder="Id Img a cargar" [(ngModel)]="idImg">
+  </mat-form-field>
+  <button mat-raised-button (click)="mostrarImg()">mostar Img</button>
+</div>
+<img mat-card-image [src]="imagenData" alt="imágen" *ngIf="imagenEstado">
