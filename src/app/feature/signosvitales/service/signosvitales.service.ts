@@ -4,6 +4,8 @@ import { HOST } from 'src/app/shared/var.constants';
 import { SignosVitales } from '../shared/signosvitales';
 import { FiltroConsultar } from '../../buscar/shared/filtroConsulta';
 import { BehaviorSubject } from 'rxjs';
+import { Pageable } from 'src/app/shared/material/pageable';
+import { PaginationRequestDto } from 'src/app/shared/model/PaginationRequestDto';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +19,12 @@ export class SignosvitalesService {
 
   constructor(private http: HttpClient) { }
 
-  listarTodos() {
-    return this.http.get<SignosVitales[]>(this.url);
+  listarTodos(page: PaginationRequestDto) {
+    return this.http.post<Pageable<SignosVitales>>(this.url, page);
   }
 
-  listarfiltro(filtro: FiltroConsultar) {
-    return this.http.post<SignosVitales[]>(`${this.url}/filtro`, filtro);
+  listarPageableFiltro(filtro: FiltroConsultar) {
+    return this.http.post<Pageable<SignosVitales>>(`${this.url}/filtro`, filtro);
   }
 
   guardar(signo: SignosVitales) {

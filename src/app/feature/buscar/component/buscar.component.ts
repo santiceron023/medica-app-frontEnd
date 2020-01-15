@@ -49,7 +49,8 @@ export class BuscarComponent implements OnInit {
     let filtro = new FiltroConsultar(
       this.form.value['dni'],
       this.form.value['nombreCompleto'],
-      this.form.value['fechaConsulta']
+      this.form.value['fechaConsulta'],
+      null
     );
     filtro.nombreCompleto = filtro.nombreCompleto.toLowerCase();
     //desde las 0 horas
