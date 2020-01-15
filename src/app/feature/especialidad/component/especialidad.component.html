@@ -1,6 +1,7 @@
 <mat-toolbar>
     <span>Especialidad</span>
 </mat-toolbar>
+<p class="msg-toolbar">Registra Ocultando Lista</p>
 
 <router-outlet></router-outlet>
 
@@ -49,6 +50,7 @@
 
 
 <!-- fab -->
-<button *ngIf="route.children.length === 0" mat-fab color="accent" style="float: right" routerLink="/especialidad/nuevo">
+<button *ngIf="route.children.length === 0" mat-fab color="accent" style="float: right"
+    routerLink="/especialidad/nuevo">
     <mat-icon>add</mat-icon>
 </button>

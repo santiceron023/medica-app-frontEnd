@@ -60,7 +60,6 @@ export class EspecialidadComponent implements OnInit {
 
   eliminar(id) {
     this.espService.eliminar(id).subscribe((data) => {
-      console.log(data);
       this.espService.listar().subscribe(lista => {
         this.espService.especialidadCambio.next(lista);
         this.espService.mensajeCambio.next('SE ELIMINÓ');

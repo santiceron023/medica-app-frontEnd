@@ -1,4 +1,5 @@
 <mat-toolbar>Búsqueda de Consulta</mat-toolbar>
+<p class="msg-toolbar">Busca por UN critero: fecha o nombre + Dni</p>
 
 <form [formGroup]="form" (ngSubmit)="buscar()">
   <mat-form-field>
@@ -15,10 +16,10 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Buscar</button>
+  <button mat-raised-button color="accent" type="submit">Buscar</button>
 </form>
 
-<mat-table [dataSource]="dataSource">
+<mat-table [dataSource]="dataSource" class="mat-elevation-z4">
 
   <ng-container matColumnDef="paciente">
     <mat-header-cell *matHeaderCellDef> Paciente </mat-header-cell>
@@ -43,7 +44,7 @@
   <ng-container matColumnDef="acciones">
     <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button type="button" mat-raised-button color="primary" (click)="verDetalle(element)">Ver Detalle</button>
+      <button type="button" mat-stroked-button color="primary" (click)="verDetalle(element)">Ver Detalle</button>
     </mat-cell>
   </ng-container>
 
@@ -51,4 +52,5 @@
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 
-<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<mat-paginator class="mat-elevation-z4" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+[length]="cantidadRegTotal" (page)="cambioPaginador($event)"></mat-paginator>

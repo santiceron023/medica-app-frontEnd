@@ -20,7 +20,6 @@ export class AppComponent {
   ngOnInit(): void {
     this.menuService.menuValorReactivo.subscribe(
       data => {
-        console.log(`VALOR MENU NUMERO NEW -> ${data}`);
         this.menus = data;
       }
     );

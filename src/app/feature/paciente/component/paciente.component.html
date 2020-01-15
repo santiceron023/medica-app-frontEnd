@@ -1,12 +1,13 @@
 <mat-toolbar>
-    <span>Paciente</span>
+  <span>Paciente</span>
 </mat-toolbar>
+<p class="msg-toolbar">Registra usando edición en la misma página</p>
 
 <router-outlet></router-outlet>
 
 
 <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
 <!-- mat table flex -->
@@ -33,9 +34,9 @@
   <!-- Column -->
   <ng-container matColumnDef="acciones">
     <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-    <mat-cell *matCellDef="let element"> 
-            <button mat-button color="primary" [routerLink]="[ 'edicion', element.idPaciente ]">modificar</button>
-            <button mat-button color="warn" (click)="eliminar(element.idPaciente)">eliminar</button>
+    <mat-cell *matCellDef="let element">
+      <button mat-button color="primary" [routerLink]="[ 'edicion', element.idPaciente ]">modificar</button>
+      <button mat-button color="warn" (click)="eliminar(element.idPaciente)">eliminar</button>
     </mat-cell>
   </ng-container>
 
@@ -44,10 +45,11 @@
 </mat-table>
 
 <!-- paginador -->
-<mat-paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [length]= "cantidadRegTotal" (page)="cambioPaginador($event)"></mat-paginator>
+<mat-paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [length]="cantidadRegTotal"
+  (page)="cambioPaginador($event)"></mat-paginator>
 <!-- pageEvento.next($event) -->
 
 <!-- fab -->
 <button mat-fab color="accent" style="float: right" routerLink="/paciente/nuevo">
-    <mat-icon>add</mat-icon>
+  <mat-icon>add</mat-icon>
 </button>

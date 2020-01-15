@@ -53,7 +53,6 @@ export class ExamenComponent implements OnInit {
 
   listar() {
     this.exService.listar().subscribe((data) => {
-      console.log(data);
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -63,7 +62,6 @@ export class ExamenComponent implements OnInit {
 
   eliminar(id) {
     this.exService.eliminar(id).subscribe((data) => {
-      console.log(data);
       this.exService.listar().subscribe(data => {
         this.exService.examenCambio.next(data);
         this.exService.mensajeCambio.next('SE ELIMINÓ');

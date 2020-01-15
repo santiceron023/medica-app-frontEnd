@@ -27,7 +27,7 @@ export class ExamenEdicionComponent implements OnInit {
     this.examen = new Examen();
     this.formCreate();
     this.actualRoute.params.subscribe((params: Params) => {
-      this.id = params['id'];
+      this.id = params.id;
       if (this.id) {
         this.exService.listarId(this.id).subscribe(
           (data) => {
@@ -41,7 +41,7 @@ export class ExamenEdicionComponent implements OnInit {
   }
 
   formCreate() {
-    let id = this.id;
+    const id = this.id;
     this.form = this.formBuilder.group({
       idFormCtrl: [id ? this.examen.idExamen : ''],
       nombresFormCtrl: [id ? this.examen.nombre : '', Validators.required],
@@ -50,14 +50,12 @@ export class ExamenEdicionComponent implements OnInit {
   }
 
   operar() {
-    this.examen.nombre = this.form.value['nombresFormCtrl'];
-    this.examen.descripcion = this.form.value['descripcionFormCtrl'];
+    this.examen.nombre = this.form.value.nombresFormCtrl;
+    this.examen.descripcion = this.form.value.descripcionFormCtrl;
 
-    console.log(this.examen, this.id);
     if (this.id) {
       this.exService.registrar(this.examen).subscribe(
         (data) => {
-          console.log(data);
           this.exService.listar().subscribe(data => {
             this.exService.examenCambio.next(data);
             this.exService.mensajeCambio.next('SE CREÓ');
@@ -67,7 +65,6 @@ export class ExamenEdicionComponent implements OnInit {
       this.examen.idExamen = this.id;
       this.exService.modificar(this.examen).subscribe(
         (data) => {
-          console.log(data);
           this.exService.listar().subscribe(data => {
             this.exService.examenCambio.next(data);
             this.exService.mensajeCambio.next('SE MODIFICÓ');

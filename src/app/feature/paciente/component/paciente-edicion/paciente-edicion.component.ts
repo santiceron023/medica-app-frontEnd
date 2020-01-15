@@ -26,7 +26,7 @@ export class PacienteEdicionComponent implements OnInit {
     this.paciente = new Paciente();
     this.formCreate();
     this.actualRoute.params.subscribe((params: Params) => {
-      this.id = params['id'];
+      this.id = params.id;
       if (this.id) {
         this.pacService.listarId(this.id).subscribe(
           (data) => {
@@ -57,19 +57,17 @@ export class PacienteEdicionComponent implements OnInit {
   }
 
   operar() {
-    this.paciente.apellidos = this.form.value['apellidosFormCtrl'];
-    this.paciente.direccion = this.form.value['direccionFormCtrl'];
-    this.paciente.dni = this.form.value['dniFormCtrl'];
-    this.paciente.email = this.form.value['emailFormCtrl'];
-    this.paciente.idPaciente = this.form.value['idFormCtrl'];
-    this.paciente.nombres = this.form.value['nombresFormCtrl'];
-    this.paciente.telefono = this.form.value['telefonoFormCtrl'];
+    this.paciente.apellidos = this.form.value.apellidosFormCtrl;
+    this.paciente.direccion = this.form.value.direccionFormCtrl;
+    this.paciente.dni = this.form.value.dniFormCtrl;
+    this.paciente.email = this.form.value.emailFormCtrl;
+    this.paciente.idPaciente = this.form.value.idFormCtrl;
+    this.paciente.nombres = this.form.value.nombresFormCtrl;
+    this.paciente.telefono = this.form.value.telefonoFormCtrl;
 
-    console.log(this.paciente);
     if (this.id) {
       this.pacService.registrar(this.paciente).subscribe(
         (data) => {
-          console.log(data);
           this.pacService.listar().subscribe(lista => {
             this.pacService.pacienteCambio.next(lista);
             this.pacService.mensajeCambio.next('SE CREÓ');
@@ -78,7 +76,6 @@ export class PacienteEdicionComponent implements OnInit {
     } else {
       this.pacService.modificar(this.paciente).subscribe(
         (data) => {
-          console.log(data);
           this.pacService.listar().subscribe(lista => {
             this.pacService.pacienteCambio.next(lista);
             this.pacService.mensajeCambio.next('SE MODIFICÓ');

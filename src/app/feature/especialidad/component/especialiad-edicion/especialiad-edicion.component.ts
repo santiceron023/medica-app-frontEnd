@@ -17,7 +17,7 @@ export class EspecialiadEdicionComponent implements OnInit {
   edicion = false;
 
   constructor(
-      private especialidadService: EspecialidadService
+    private especialidadService: EspecialidadService
     , private route: ActivatedRoute
     , private router: Router) {
 
@@ -37,9 +37,6 @@ export class EspecialiadEdicionComponent implements OnInit {
   }
 
   initForm() {
-
-    console.log(this.edicion);
-
     if (this.edicion) {
       this.especialidadService.listarId(this.id).subscribe(data => {
         const id = data.idEspecialidad;
@@ -65,7 +62,6 @@ export class EspecialiadEdicionComponent implements OnInit {
       });
     } else {
       this.especialidadService.registrar(this.especialidad).subscribe(data => {
-        console.log(data);
         this.especialidadService.listar().subscribe(especialidad => {
           this.especialidadService.especialidadCambio.next(especialidad);
           this.especialidadService.mensajeCambio.next('Se registró');

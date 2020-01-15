@@ -76,7 +76,6 @@ export class PacienteComponent implements OnInit {
 
   eliminar(id) {
     this.pacService.eliminar(id).subscribe((data) => {
-      console.log(data);
       this.pacService.listar().subscribe(data => {
         this.pacService.pacienteCambio.next(data);
         this.pacService.mensajeCambio.next('SE ELIMINÓ');

@@ -18,7 +18,6 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     const helper = new JwtHelperService();
     const tokenInfo: JwtDecodedToken = helper.decodeToken(sessionStorage.getItem(TOKEN_NAME));
-    console.log(  tokenInfo );
     this.roles = tokenInfo.authorities;
     this.nombreUsuario = tokenInfo.user_name;
   }

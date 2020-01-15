@@ -36,7 +36,6 @@ export class ArchivoComponent implements OnInit {
   }
 
   selectFile(event: any) {
-    console.log(event.target.files);
     this.labelFile = event.target.files[0].name;
     this.slectedFiles = event.target.files;
   }
@@ -44,7 +43,6 @@ export class ArchivoComponent implements OnInit {
   uploadFiles() {
     this.currentFileUpload = this.slectedFiles.item(0);
     this.servicioArchivo.guardar(this.currentFileUpload).subscribe(data => {
-      console.log(data);
       this.slectedFiles = undefined;
       this.labelFile = undefined;
     });
@@ -57,7 +55,6 @@ export class ArchivoComponent implements OnInit {
 
     this.servicioArchivo.leer(this.idImg).subscribe(
       data => {
-        console.log(data);
         // this.imagenData=data;
         this.convertir(data);
       }

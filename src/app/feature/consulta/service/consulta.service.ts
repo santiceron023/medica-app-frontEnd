@@ -6,6 +6,7 @@ import { Consulta } from '../shared/consulta';
 import { ConsultaResumen } from '../../reporte/shared/ConsultaResumen';
 import { Observable } from 'rxjs';
 import { FiltroConsultar  } from '../../buscar/shared/filtroConsulta';
+import { Pageable } from 'src/app/shared/material/pageable';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,9 @@ export class ConsultaService {
     return this.http.post(this.url, consultaDTO);
   }
 
-  buscar(filtroConsulta: FiltroConsultar ) {
+  buscarPageableFiltro(filtroConsulta: FiltroConsultar ) {
     // deria ser un get, peor es post porque tiene mcuhos arg
-    return this.http.post<Consulta[]>(`${this.url}/buscar`, filtroConsulta);
+    return this.http.post<Pageable<Consulta>>(`${this.url}/buscar`, filtroConsulta);
   }
 
   // procedimeinto almacenado

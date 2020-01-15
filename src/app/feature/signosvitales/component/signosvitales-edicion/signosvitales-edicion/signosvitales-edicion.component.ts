@@ -55,7 +55,6 @@ export class SignosvitalesEdicionComponent implements OnInit {
   chargeData(signo: SignosVitales) {
     this.pacienteService.listar().subscribe(
       (lista) => {
-        console.log(lista);
         this.pacientes = lista;
         if (!signo) {
           // para que salgan todos los valores al inicio --> startWith('')

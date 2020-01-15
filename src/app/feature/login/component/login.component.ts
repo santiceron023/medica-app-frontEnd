@@ -17,7 +17,7 @@ import { Menu } from 'src/app/core/menu/shared/menu.js';
 export class LoginComponent implements OnInit {
   usuario: string;
   clave: string;
-  mensaje  = '';
+  mensaje = '';
   error = '';
 
   constructor(
@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
   iniciarSesion() {
     sessionStorage.clear();
     this.login.login(this.usuario, this.clave).subscribe((data: tokenApi) => {
-      console.log(`login OK con data -> ${JSON.stringify(data)}`);
 
       if (data) {
 

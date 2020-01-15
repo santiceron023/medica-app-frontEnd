@@ -1,4 +1,6 @@
 <mat-toolbar>Médicos</mat-toolbar>
+<p class="msg-toolbar">Registra con diálogo</p>
+
 
 <div class="example-container mat-elevation-z8">
 
@@ -35,8 +37,8 @@
 
     <ng-container matColumnDef="acciones">
       <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-      <mat-cell *matCellDef="let row">        
-        <button mat-button color="primary" (click)="openDialog(row)" >Actualizar</button>
+      <mat-cell *matCellDef="let row">
+        <button mat-button color="primary" (click)="openDialog(row)">Actualizar</button>
         <button mat-button color="accent" (click)="eliminar(row)">Eliminar</button>
       </mat-cell>
     </ng-container>

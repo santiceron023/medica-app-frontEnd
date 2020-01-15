@@ -6,3 +6,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .full-width-field {
     width: 100%;
  }
+
+ .msg-toolbar{
+    background: #f5f5f5;
+    text-align: center;
+ }

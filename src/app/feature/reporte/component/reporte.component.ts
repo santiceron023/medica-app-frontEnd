@@ -98,7 +98,6 @@ export class ReporteComponent implements OnInit {
     this.servicioConsulta.generarReporte().subscribe(data => {
       const reader = new FileReader();
       reader.onload = (event: any) => {
-        console.log(event.target.result);
         this.pdfSrc = event.target.result;
       };
       reader.readAsArrayBuffer(data);

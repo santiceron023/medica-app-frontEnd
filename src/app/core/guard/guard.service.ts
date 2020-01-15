@@ -66,7 +66,6 @@ export class GuardService implements CanActivate {
       );
       // Si no está, no tiene permiso
       if (!auxPermiso) {
-        console.log("usuario sin permiso");
         this.irInicio();
       } else {
         return true;

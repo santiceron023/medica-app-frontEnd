@@ -20,7 +20,7 @@ export class DetalleDialogComponent {
     @Inject(MAT_DIALOG_DATA) private data: Consulta) {
 
     this.detallesConsulta = this.data.detalleConsulta;
-    this.nombrePaciente = this.data.paciente.nombres + this.data.paciente.apellidos;
+    this.nombrePaciente = `${this.data.paciente.nombres} ${this.data.paciente.apellidos}`;
     this.fecha = this.data.fecha.split('T')[0];
 
   }

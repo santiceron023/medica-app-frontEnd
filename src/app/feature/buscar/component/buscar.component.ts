@@ -4,12 +4,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 import {
   MatTableDataSource,
   MatPaginator,
-  MatSort,
-  MatDialog
+  MatDialog,
+  PageEvent
 } from '@angular/material';
 import { Consulta } from 'src/app/feature/consulta/shared/consulta';
 import { ConsultaService } from 'src/app/feature/consulta/service/consulta.service';
 import { FiltroConsultar } from 'src/app/feature/buscar/shared/filtroConsulta';
+import { PaginationRequestDto } from 'src/app/shared/model/PaginationRequestDto';
+import { Pageable } from 'src/app/shared/material/pageable';
 
 @Component({
   selector: 'app-buscar',
@@ -18,19 +20,19 @@ import { FiltroConsultar } from 'src/app/feature/buscar/shared/filtroConsulta';
 })
 export class BuscarComponent implements OnInit {
   form: FormGroup;
+  maxFecha: Date = new Date();
+
   displayedColumns = [
-    'paciente',
-    'medico',
-    'especialidad',
-    'fecha',
-    'acciones'
+    'paciente', 'medico', 'especialidad',
+    'fecha', 'acciones'
   ];
   dataSource: MatTableDataSource<Consulta>;
+
   @ViewChild(MatPaginator, { static: false })
   paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false })
-  sort: MatSort;
-  maxFecha: Date = new Date();
+  cantidadRegTotal: number;
+  configuracionPage: PaginationRequestDto;
+  configuracionFiltro: FiltroConsultar;
 
   constructor(
     private consultaService: ConsultaService,
@@ -43,17 +45,41 @@ export class BuscarComponent implements OnInit {
       nombreCompleto: new FormControl(''),
       fechaConsulta: new FormControl()
     });
+    this.listarTodo();
+  }
+
+  listarTodo() {
+    this.configuracionPage = new PaginationRequestDto(0, 5);
+    this.configuracionFiltro = new FiltroConsultar(
+      null, null, null, this.configuracionPage);
+    this.listarPaginatedFiltro();
+  }
+
+  listarPaginatedFiltro() {
+    this.consultaService.buscarPageableFiltro(this.configuracionFiltro).subscribe(
+      (data: Pageable<Consulta>) => {
+        this.dataSource = new MatTableDataSource(data.content);
+        this.cantidadRegTotal = data.totalElements;
+      }
+    );
+  }
+
+  cambioPaginador(page: PageEvent) {
+    this.configuracionPage = new PaginationRequestDto(page.pageIndex, page.pageSize);
+    this.configuracionFiltro.pagina = this.configuracionPage;
+    this.listarPaginatedFiltro();
   }
 
   buscar() {
-    let filtro = new FiltroConsultar(
-      this.form.value['dni'],
-      this.form.value['nombreCompleto'],
-      this.form.value['fechaConsulta'],
-      null
+    const filtro = new FiltroConsultar(
+      this.form.value.dni,
+      this.form.value.nombreCompleto,
+      this.form.value.fechaConsulta,
+      this.configuracionPage
     );
+
     filtro.nombreCompleto = filtro.nombreCompleto.toLowerCase();
-    //desde las 0 horas
+    // desde las 0 horas
     if (filtro.fechaConsulta) {
       filtro.fechaConsulta.setHours(0);
       filtro.fechaConsulta.setMinutes(0);
@@ -63,13 +89,8 @@ export class BuscarComponent implements OnInit {
       delete filtro.dni;
       delete filtro.nombreCompleto;
 
-      this.consultaService.buscar(filtro).subscribe(data => {
-        this.dataSource = new MatTableDataSource(data);
-      });
-    }
-
-    else {
-      //limpiar los elementos que no son los de búsqueda
+    } else {
+      // limpiar los elementos que no son los de búsqueda
       delete filtro.fechaConsulta;
 
       if (filtro.dni.length === 0) {
@@ -79,11 +100,9 @@ export class BuscarComponent implements OnInit {
       if (filtro.nombreCompleto.length === 0) {
         delete filtro.nombreCompleto;
       }
-
-      this.consultaService.buscar(filtro).subscribe(data => {
-        this.dataSource = new MatTableDataSource(data);
-      });
     }
+    this.configuracionFiltro = filtro;
+    this.listarPaginatedFiltro();
   }
 
   verDetalle(consulta: Consulta) {

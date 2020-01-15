@@ -1,4 +1,4 @@
-<h2> Paciente {{nombrePaciente}} | Fecha: {{fecha}} </h2>
+<p class="mat-h2"> PACIENTE: {{nombrePaciente}} | FECHA: {{fecha}} </p>
 
 <mat-card *ngFor="let item of detallesConsulta">
     <mat-card-header>
@@ -10,4 +10,4 @@
     </mat-card-content>
 </mat-card>
 <br>
-<button mat-raised-button (click)="closeModal()" color="accent">cerrar</button>
+<button class="boton-centrado" mat-raised-button (click)="closeModal()" color="warn">cerrar</button>
