@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MediApp": {
+    "medicaApp": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/MediApp",
+            "outputPath": "dist/medicaApp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,19 +58,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MediApp:build",
+            "browserTarget": "medicaApp:build",
             "aot": true
           },
           "configurations": {
             "production": {
-              "browserTarget": "MediApp:build:production"
+              "browserTarget": "medicaApp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MediApp:build"
+            "browserTarget": "medicaApp:build"
           }
         },
         "test": {
@@ -108,16 +108,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "MediApp:serve"
+            "devServerTarget": "medicaApp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "MediApp:serve:production"
+              "devServerTarget": "medicaApp:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "MediApp"
+  "defaultProject": "medicaApp"
 }

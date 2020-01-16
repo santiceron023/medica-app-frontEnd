@@ -38,7 +38,7 @@ export class HttpErrorsInterceptor implements HttpInterceptor {
                     this.snackBar.open('Sin Conexión', 'ERROR', { duration: 5000 });
 
                 } else if (err.status === 400) {
-                    this.snackBar.open(err.mensaje, 'ERROR 400', { duration: 5000 });
+                    this.snackBar.open(err.error.error_description, 'ERROR 400', { duration: 5000 });
 
                 } else if (err.status === 401) {
 
