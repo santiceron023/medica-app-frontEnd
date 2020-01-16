@@ -1,7 +1,7 @@
 # Medica App
 ### Front End App
 
-Administración consultas médicas, con manejo de roles, genera estadísticas y maneja multimedia.
+Administración consultas médicas, con manejo de sesión genera estadísticas y maneja multimedia.
 
 ## Características
 * ***Arquitectura feature-core-shared***
@@ -12,11 +12,12 @@ Administración consultas médicas, con manejo de roles, genera estadísticas y 
 * Side menú
 * Maneja JWT, decode
 * Animación en Login
-* Angular material en español, Manejo de tablas, paginación
+* Angular material en español
+* Manejo de tablas dinámicas/estáticas, paginación, sorting.
 
 ## build
 
-necesita correrse con ahead of time, activado, angular Issue. Pre-configurado en ng serve.
+Necesita correrse con ***ahead of time***, angular Issue. Pre-configurado para comandos ng serve/e2e.
  
 ## Tecnologías
 
